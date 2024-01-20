@@ -3,11 +3,11 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 
-\title{Problem Statement and Goals\\\progname}
+\title{Problem Statement and Goals\\\Centrality In Graphs}
 
-\author{\authname}
+\author{\Atiyeh Sayadi}
 
-\date{}
+\date{January 20, 2024}
 
 \input{../Comments}
 \input{../Common}
@@ -22,7 +22,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+January 20, 2024 & Atiyeh Sayadi & Initial Draft\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -31,26 +31,50 @@ Date2 & Name(s) & Description of changes\\
 
 \section{Problem Statement}
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
+Calculating how important nodes are in graphs is crucial for understanding how networks work. Metrics like degree centrality, closeness centrality, and betweenness centrality help us find key nodes that are vital for information flow, connections, and influence in a network. This project aims to use the concept of centrality to calculate the main and most important nodes in the given graph.
 
 \subsection{Problem}
 
+In this project, we want to study a given graph using centrality measures, specifically degree centrality and closeness centrality. Centrality in a graph is like a way to figure out which nodes are really important. Degree centrality looks at how many connections each node has, and if a node has a lot of connections, it's considered more important. On the other hand, closeness centrality checks how close a node is to all the other nodes in the graph. It focuses on nodes that are central in terms of reaching other nodes efficiently.
+
+For this project, we start with a graph, and by using algorithms for degree centrality and closeness centrality, we find out how central each node is. Degree centrality highlights nodes with many connections, showing their importance in terms of direct connections. Closeness centrality identifies nodes that are central in terms of efficient communication with other nodes. The project's output provides these centrality measures for each node, helping users understand the importance and connections of each node in the given graph. The main goal is to give valuable information about the structure of the network and pinpoint the most influential nodes.
+
 \subsection{Inputs and Outputs}
 
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
+Input:
 
-\subsection{Stakeholders}
+A given graph
+Centrality metrics, specifically degree centrality and closeness centrality algorithms
+Output:
+
+Centrality measures for each node in the given graph
+For degree centrality: Highlight nodes with a large number of connections, indicating their significance in terms of direct connections.
+For closeness centrality: Identify nodes that are central in terms of efficient communication with other nodes.
+The output presents these centrality metrics for each node, enabling users to understand the importance and connectivity of individual nodes within the given graph. The primary focus is on providing valuable insights into the network structure and identifying the most influential nodes. 
+
+% \subsection{Stakeholders}
 
 \subsection{Environment}
 
-\wss{Hardware and software}
+This project will be developed using either Python or NetLogo software.
+
+% \wss{Hardware and software}
 
 \section{Goals}
 
+The project has several goals.The main focus is on implementing centrality measures, specifically degree centrality and closeness centrality algorithms, to calculate the importance of each node in a given graph. Degree centrality highlights nodes with many connections, indicating their importance, while closeness centrality identifies nodes crucial for efficient communication. The project output presents these measures for each node, helping users understand the significance and connections of individual nodes in the graph. The primary aim is to provide insights into the network structure and identify influential nodes.
+
 \section{Stretch Goals}
 
+Implementation of Broader Algorithms: Adding additional centrality algorithms beyond degree and closeness, such as betweenness centrality or eigenvector centrality.
+
+Enhanced User Interface: Developing a more efficient and feature-rich user interface for graph analysis.
+
+Support for Larger Graphs: Improving program performance to process and analyze larger graphs.
+
+Advancement in Pattern Recognition: Implementing algorithms for identifying specific patterns within the graph.
+
+Support for Diverse Graphs: Adding support for directed or multipartite graphs.
+
+Enhanced Reporting Capabilities: Increasing reporting capabilities for analyses and project results.
 \end{document}

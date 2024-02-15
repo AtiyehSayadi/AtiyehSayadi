@@ -177,8 +177,8 @@ systems.  The symbols are listed in alphabetical order.
 \noindent \begin{longtable*}{l l p{12cm}} \toprule
 \textbf{symbol} & \textbf{unit} & \textbf{description}\\
 \midrule 
-DC(i) & \si[per-mode=symbol] {-} & Degree Centrality of node i
-\\CC(i)& \si[per-mode=symbol] {-} & Closeness Centrality of node i
+CC(i)& \si[per-mode=symbol] {-} & Closeness Centrality of node i
+\\DC(i) & \si[per-mode=symbol] {-} & Degree Centrality of node i
 which heat is transferred in
 \\ 
 \bottomrule
@@ -214,24 +214,24 @@ CIG &  Centrality in Graphs: finding the most importamt nodes\\
 \section{Introduction}
 
 
-Analyzing networks using graph-related concepts has been one of the most interesting areas of study for professionals. Among these concepts, centrality and identifying the most effective members of the network are crucial for some studies. This project attempted to identify the most important nodes in a given graph, represented in the form of a matrix of nodes and relationships, using degree centrality and closeness centrality methods. In fact, our goal is to calculate the centrality measures of each node in the graph using both of the mentioned methods.
+Analyzing networks using graph-related concepts has been one of the most interesting areas of study for professionals. Among these concepts, centrality and identifying the most effective members of the network are crucial for some studies. This project attempted to identify the most important nodes in a given graph, represented in the form of a matrix of nodes and relationships, using degree centrality and closeness centrality methods. In fact, the goal is to calculate the centrality measures of each node in the graph using both of the mentioned methods.
 
 \subsection{Purpose of Document}
-The purpose of this document is to provide an overview of the design and implementation project for a system to compute centrality and degree in graphs. Therefore, using this document, various dimensions of the project including requirements, objectives, implementation methods, etc., will be clearer, which aids in the development and maintenance of the software
-
+The aim of creating this document is to outline the needs, conditions, goals, and etc. that the project will be designed and developed based on. Moreover, it will help ensure a more purposeful testing and approval process in the future and after implementation.
 
 \subsection{Scope of Requirements} 
 
 
-This project does not encompass various methods for calculating centrality in graphs. In other words, it only utilizes the closeness  and degree methods. Additionally, selecting the best criterion for centrality computation is not within the scope of this project's implementation agenda. Lastly, weighted and directed graphs will not be examined in this project.
+This project does not encompass various methods for calculating centrality in graphs. In other words, it only utilizes the closeness  and degree methods. Additionally, selecting the best criterion for centrality computation is not within the scope of this project's implementation agenda. For instance, other central criteria such as flexibility, pressure, power, etc., will not be calculated by the software. Lastly, weighted and directed graphs will not be examined in this project.
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
-The intended readers for this project are individuals with sufficient knowledge in graph theory and network analysis, in addition to those with programming expertise.
+
+Readers of this document need to have sufficient knowledge about graphs, their properties and types, and network analysis in order to have a better understanding of these texts. Additionally, a high level of computer expertise is not required to understand this document.
 
 \subsection{Organization of Document}
 
-his document follows the structure proposed by \citet{SmithandLai2005}, covering all opportunities, requirements, definitions, etc. So, readers can start by looking at the goal statements and then dive into the theoretical model to fully understand the system.
+This document follows the structure proposed by \citet{SmithandLai2005}, covering all opportunities, requirements, definitions, etc. So, readers can start by looking at the goal statements and then dive into the theoretical model to fully understand the system.
 
 \section{General System Description}
 
@@ -242,7 +242,7 @@ characteristics and lists the system constraints.
 \subsection{System Context}
 
 
-Looking at Figure 1 gives you a basic idea of the system. First, it reads a graph file or text file with a graph. Then, it calculates closeness measures for each node using centrality and closeness definitions, giving two arrays as output for the given graph.
+Looking at Figure 1 gives you a basic idea of the system. First, it reads a graph file with a graph. Then, it calculates closeness measures for each node using centrality and closeness definitions, giving two arrays as output for the given graph.
 
 \begin{figure}[h!]
 \begin{center}
@@ -256,12 +256,12 @@ Looking at Figure 1 gives you a basic idea of the system. First, it reads a grap
 \begin{itemize}
 \item User Responsibilities: 
 \begin{itemize}
-\item the matrix of arrey should be normalized.
+\item The matrix should be normalized.
 \end{itemize}
 \item \ CIG Responsibilities:
 \begin{itemize}
-\item read the input file
-\item calculating degree and closeness centrality for each node in the graph correctly
+\item Read the input file
+\item Calculating degree and closeness centrality for each node in the graph correctly
 \end{itemize}
 \end{itemize}
 
@@ -269,8 +269,7 @@ Looking at Figure 1 gives you a basic idea of the system. First, it reads a grap
 
 
 \subsection{User Characteristics} \label{SecUserCharacteristics}
-
-Users of this system need to know about networks and graphs to understand the output based on their input. They should also be able to upload different files if needed.
+Users of this system should have sufficient familiarity with graphs and network analysis concepts to understand the program's output based on their input, which includes measures of centrality, degree, and proximity for each node. They should also be able to upload different files if needed.
 
 \subsection{System Constraints}
 
@@ -290,8 +289,8 @@ We have a graph representing a social network, and we aim to identify the most c
 \begin{itemize}
 \item \textbf{Graph:}  A collection of nodes connected by edges.
 
-\item \textbf{Node:} Symbole of members in graphs.
-\item \textbf{Edghe:} Connections between nodes in graphs.
+\item \textbf{Node:} Members in graphs.
+\item \textbf{Edge:} Connections between nodes in graphs.
 
 \item \textbf{Centrality:} Measure used to identify the most important nodes in a network.
 \item \textbf{Degree:}  Number of direct connection that each node has.
@@ -396,7 +395,7 @@ None.
 }
 % #7 Source
 {
-  \url{https://en.wikipedia.org/wiki/Centrality}
+  \url{https://en.wikipedia.org/w/index.php?title=Centrality&oldid=1176179277}
 }
 % #8 Referenced by
 {
@@ -574,6 +573,35 @@ In graph theory, the degree of a node is the number of edges directly connected 
   \hline
 \end{tabular}
 \end{minipage}\\
+\noindent
+\begin{minipage}{\textwidth}
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
+\hline
+\rowcolor[gray]{0.9}
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{matirix}\\
+\hline
+Label& \bf The adjacency matrix\\
+\hline
+Symbol &$-$\\
+\hline
+% Units& $Mt^{-3}$\\
+% \hline
+  SI Units & \-\\
+  \hline
+Equation& - \\
+  \hline
+  Description & 
+               
+The adjacency matrix, also called the connection matrix, is a matrix containing rows and columns which is used to represent a simple labelled graph, with 0 or 1 in the position of (Vi , Vj) according to the condition whether Vi and Vj are adjacent or not.
+  \\
+  \hline
+ Sources& https://byjus.com/maths/adjacency-matrix/ \\
+  \hline
+  Ref.\ By & TM1,\dref{g_graph},\dref{g_centrality},\dref{g_dc},\dref{g_cc},\ddref{degree},\iref{i_dc}, ,\iref{i_cc}\\
+  \hline
+\end{tabular}
+\end{minipage}\\
 
 \subsubsection{Data Types}\label{sec_datatypes}
 
@@ -600,7 +628,7 @@ In this section, a computational model of  degree and closeness centrality for e
   \hline
   Label& Degree Centrality\\
   \hline
-  Input& The matirix of the graph\\
+  Input& \ddref{matrix}\\
   \hline
   Output& The value of degree centrality for each node \\
   \hline
@@ -631,7 +659,7 @@ In this section, a computational model of  degree and closeness centrality for e
   \hline
   Label& Closeness Centrality\\
   \hline
-  Input& The matirix of the graph\\
+  Input& \ddref{matrix}\\
   \hline
   Output& The value of closeness centrality for each node \\
   \hline
@@ -662,7 +690,7 @@ The input utilizes a text file to present the matrix of relationships in the gra
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $Matrix  M$ & $|M| > 0$ & Integer value &  1  & -
+  $Matrix  M$ & $|M| > 0$ & Integer value &  1  & \,
   \\
   \bottomrule
 \end{longtable*}
@@ -681,9 +709,9 @@ Output of this software is a set of numbers representing the centrality of each 
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  $DC(i)$ & $ 0 <= DC(i) <= 1$
+  $DC(i)$ & $ 0 \leq DC(i) \leq 1$
   \\
- $CC(i)$ & $ 0 <= CD(i) <= 1$
+ $CC(i)$ & $ 0 \leq CD(i) \leq 1$
 \\
   \bottomrule
 \end{longtable*}
@@ -699,7 +727,7 @@ This section delineates the requirements of this project across various sections
 \noindent \begin{itemize}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] A text file containing the adjacency matrix of a directed and unweighted graph.
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] The computational formulas must be accurately implemented by the software.
+\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] The computational formulas must be implemented correctly according to what is mentioned in the models(\iref{i_dc}, \iref{i_cc}) to ensure the proper functioning of the software.
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
  A set of numerical values representing the centrality of each node calculated using both degree centrality and closeness centrality methods. These values range between zero and one.
@@ -717,17 +745,16 @@ In this section, non-functional requirements of the software are expressed in th
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
   \textbf{Accuracy} \
-Efforts must have been made to accurately implement computational algorithms to ensure reliable and correct output.
+This software should be developed in a way that ensures the reliability and accuracy of output generation performance.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-Codes should be written in an invironment that it is easy to users to run, like python.
+Codes should be developed in a manner and within an environment that allows them to be usable across different operating systems and conditions. Additionally, it's necessary for the user to be able to work with them comfortably.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
   \textbf{Maintainability} 
 Efforts should be made to minimize side effects between functions at minimum. Additionally, it is necessary for the names of functions, variables, and parameters to clearly reflect their functionality.
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
   \textbf{Portability}
-
-This software must be written in a language that is capable of running in any environment with any operating system.
+The software must be designed in such a way that it can be executed in different conditions and environments.
 
 
 \end{itemize}

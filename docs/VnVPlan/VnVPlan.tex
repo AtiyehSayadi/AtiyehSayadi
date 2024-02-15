@@ -36,19 +36,7 @@ Date 2 & 1.1 & Notes\\
 \end{tabularx}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
 
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
@@ -74,10 +62,8 @@ in.}
   \bottomrule
 \end{tabular}\\
 
-The table that follows summarizes the symbols used in this document along with their
-units. The choice of symbols was made to be consistent with the heat transfer literature
-and with existing documentation for solar water heating systems. The symbols are listed in
-alphabetical order.
+This section includes symbols and symbols used for developing this document.
+
 
 \newpage
 
@@ -289,11 +275,11 @@ How test will be performed:  At least three reviewers read the documentation and
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	&R1 &R2 & R3 & Accuracy\\
+	&R1 &R2 & R3 & R4 & Accuracy\\
 \hline
-Test 1     & X& & & X \\ \hline
-Test 2    & & X & & X\\ \hline
-Test 3     & & & X & X\\ \hline
+Test 1     & X  &   &  &  & X \\ \hline
+Test 2    &  &  &  X &  & X\\ \hline
+Test 3     &  &  &  & X & X\\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Tests and Requirments in SRS}
 \label{Table:A_trace}
@@ -432,16 +418,14 @@ How test will be performed:
 
 \section{Appendix}
 
-This is where you can place additional information.
+As previously mentioned, this document aims to provide information about testing a software project from start to finish, covering different methods and aspects. Therefore, this document will assist in achieving a more precise and targeted testing and validation process.
 
 \subsection{Symbolic Parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-
+In the development of this document, no symbolic constants have been used.
 \subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+Since the development of a graphical interface is not part of the development agenda for this project, no description can be considered for this section.
 
 \newpage{}
 \section*{Appendix --- Reflection}

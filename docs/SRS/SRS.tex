@@ -270,7 +270,7 @@ Looking at Figure 1 gives you a basic idea of the system. First, it reads a grap
 
 
 \subsection{User Characteristics} \label{SecUserCharacteristics}
-Users of this system should have sufficient familiarity with graphs and network analysis concepts to understand the program's output based on their input, which includes measures of centrality, degree, and proximity for each node. They should also be able to upload different files if needed.
+Users of this system should have sufficient familiarity with graphs and network analysis concepts to understand the program's output based on their input, which includes measures of centrality, degree, and proximity for each node. They should also be able to upload different files if needed. Since an interface is not designed for data entry, the user should be able to input the file directly into the program's source code.
 
 \subsection{System Constraints}
 
@@ -279,7 +279,7 @@ This system does not examine weighted or directed graphs. Additionally, it does 
 
 \section{Specific System Description}
 
-Consider having a graph representing a social network. We aim to identify the most central individuals in this network using the concept of centrality. Firstly, the social network needs to be introduced to the system in the form of a graph. Then, the software calculates the centrality measures, specifically degree centrality and closeness centrality, for each node individually and ultimately computes them for all members of the network.
+Consider having a graph representing a social network. We aim to identify the most central individuals in this network using the concept of centrality. Firstly, the social network needs to be introduced to the system in the form of a graph. In fact, it means that the network graph will be introduced to the system as an input in the form of a matrix. Then, the software calculates the centrality measures, specifically degree centrality and closeness centrality, for each node individually and ultimately computes them for all members of the network.
 
 \subsection{Problem Description} \label{Sec_pd}
 
@@ -580,7 +580,7 @@ In graph theory, the degree of a node is the number of edges directly connected 
 \begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
 \hline
 \rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{matirix}\\
+Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{matrix}\\
 \hline
 Label& \bf The adjacency matrix\\
 \hline
@@ -771,7 +771,8 @@ In this project, efforts have been made to avoid using weighted and directed gra
 
 \item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] In this project, it is possible that the programming environment may change.
 
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:]  Additionally, the method of defining the matrix in the input file may change from n*2 to n*n.
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:]  The method of defining the matrix in the input file may change from n*2 to n*n.
+\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:]  Computations may also be performed on directed graphs.
 
 \end{itemize}
 

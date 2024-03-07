@@ -59,6 +59,9 @@ Date 2 & 1.1 & Notes\\
   \midrule 
   CC& Closeness Centrality \\
   CD& Degree Centrality  \\
+SRS & Software Requirment Specification\\
+MG& Module Guide\\
+MIS& Module Interface Specification\\
   \bottomrule
 \end{tabular}\\
 
@@ -76,46 +79,67 @@ This document is created to review and confirm the project from its early stages
 
 \subsection{Summary}
 
-We want to design software that calculates closeness centrality and degree centrality for each node in a given graph, represented in the form of a numerical matrix of nodes and edges. Since this software is computational in nature, the accuracy and performance of functions and modules, including the two main modules that calculate closeness centrality and degree centrality, are crucial. Therefore, it is necessary for this software to be tested and validated from various aspects. This document serves as a roadmap for testing this software from pre-development to post-development stages.
+We want to design software that calculates closeness centrality and degree centrality for each node in a given graph, represented in the form of a numerical matrix of nodes and edges. Since this software is computational in nature, the accuracy and performance of functions and modules, including the  main modules that calculate closeness centrality and degree centrality, are crucial. Therefore, it is necessary for this software to be tested and validated from various aspects. This document serves as a roadmap for testing this software from pre-development to post-development stages.
 \subsection{Objectives}
 
-The purpose of developing this document is to accurately measure the correctness and performance of modules and the overall software, and to verify the software. For example, at the end and after generating the output, it is necessary to know how valid and accurate the produced results are. To achieve this, we can use library functions in Python that perform these calculations and compare the software output with them. Additionally, this document will not cover all aspects of software testing because, for instance, since we are not developing a user interface for the software, usability testing is not relevant.
+The purpose of developing this document is to accurately measure the correctness and performance of modules and the overall software, and to verify the software. For example, at the end and after generating the output, it is necessary to know how valid and accurate the produced results are. To achieve this, we can use library functions in Python that perform these calculations and compare the software output with them. Additionally, this document will not cover all aspects of software testing because, for instance, since we are developing a simple  user interface for the software, usability testing is not relevant.
 
 \subsection{Relevant Documentation}
 
-At this stage of document setup, other documents such as the Software Requirements Specification (SRS) and the Problem Statement have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in the Problem Statement document and elaborated more precisely in the SRS.
+At this stage of document setup, other documents such as the Software Requirements Specification (SRS),  the MIS ans TH MG have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in these documents.
 
-\citet{SRS}
 
 \section{Plan}
-The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. Therefore, documents such as the SRS, designs, and ultimately the final software need to be reviewed and validated from various perspectives.
+The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. Therefore, documents such as the SRS, the  MIS and the MG need to be reviewed and verified from various perspectives.
 
 \subsection{Verification and Validation Team}
 
 This software is being developed individually. Therefore, initially, it is the developer's responsibility to ensure the correctness of its functioning and a proper understanding of the requirements. Additionally, reviewers can inform about any issues encountered during each stage of development.
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+	& \textbf{SRS }& \textbf{VnV}& \textbf{MIS/MG} \\
+\hline
+Atiyeh Sayadi& X& X& X \\ \hline
+Yiding& X& X& X \\ \hline
+Tanya & X& & \\ \hline
+Cynthia& & X& \\ \hline
+Waqar& & & X \\ \hline
+Dr. Spencer Smith& X& X& X \\ \hline
+\end{tabular}
+\caption{The table represents the responsibility of each team member. }
+\label{Table:2}
+\end{table}
 
 \subsection{SRS Verification Plan}
 
 The SRS document can be verified by reviewers according to the following:\\
 1- Confirmation of project requirements and assumptions.\\
 2- Confirmation of project objectives aligned with requirements.\\
-3- Confirmation of the clarity in explaining algorithms, their concepts, and their applicability.
+3- Confirmation of the clarity in explaining algorithms, their concepts, and their applicability.\\
+
+Process: The document is uploaded to GitHub. Relevant reviewers examine it and provide their feedback in the form of issues.
 
 \subsection{Design Verification Plan}
-The design phase is an intermediate and critical stage where the final software is designed based on features, requirements, and assumptions. In this section, the main functions and modules are designed.
-The design phase of this project can only be approved by those who are aware of the dimensions and objectives of this software. Therefore, reviewers need to examine whether this project has been designed practically and correctly in accordance with its objectives and requirements.
+The design phase is an intermediate and critical stage where the final software is designed based on features, requirements, and assumptions. In this section, the main functions and modules are designed. Therefore, reviewers need to examine whether this project has been designed practically and correctly in accordance with its objectives and requirements.\\
+
+Process: The document is uploaded to GitHub. Relevant reviewers examine it and provide their feedback in the form of issues.
 
 \subsection{Verification and Validation Plan Verification Plan}
-In software development, all stages, including software testing, require verification. In this regard, it is necessary to examine whether the tests planned for the software are sufficient or not. Additionally, sometimes some tests are overly complex or impractical to execute, and they need to be identified and removed from the verification process. This confirmation is carried out by reviewers.
+In software development, all stages, including software testing, require verification. In this regard, it is necessary to examine whether the tests planned for the software are sufficient or not. Additionally, sometimes some tests are overly complex or impractical to execute, and they need to be identified and removed from the verification process. This confirmation is carried out by reviewers.\\
+
+Process: The document is uploaded to GitHub. Relevant reviewers examine it and provide their feedback in the form of issues.
 \subsection{Implementation Verification Plan}
 
 
-The developed software needs to be tested in the following areas:\\
-1- Input file format: Ensuring that the input file is formatted according to the standard for reading.\\
-2- Closeness centrality output: The output for closeness centrality for each node should range between zero and one.\\
-3- Degree centrality output: The output for degree centrality for each node should range between zero and one.\\
-Therefore, it is necessary to manually test the above cases with code development. Additionally, Python libraries that calculate closeness centrality and degree centrality for graphs can be used to ensure that the program's output is accurate and precise.
-Furthermore, by changing the input dataset, it can be ensured that the software is usable for all standard datasets.
+
+In the final stage, the software needs to be approved. This approval involves:\\
+1. Verification of whether the software has been developed according to the requirements, goals, algorithms, and assumptions specified in the SRS document or not.\\
+2. Checking whether the final software conforms to the design documents from various aspects or not.\\
+3. Ensuring whether the output is clear or not.\\
 
 \subsection{Automated Testing and Verification Tools}
 
@@ -123,10 +147,7 @@ As mentioned, this software will primarily be tested for accuracy and performanc
 
 \subsection{Software Validation Plan}
 
-1- The input file must be a numerical matrix with only two columns.\\
-2- The outputs should include calculations for closeness centrality and degree  centrality for all nodes.\\
-3- The outputs for closeness centrality and degree  centrality should be between zero and one.\\
-In addition to the mentioned aspects, this project is supervised by reviewers. Therefore, all aspects, including software testing, need to be verified and any existing issues should be identified by them.
+To validate any software, it is necessary to first verify it from various aspects. After the software has been verified, the project owner needs to validate it. This project will be validated by Dr. Spencer Smith.
 
 \section{System Test Description}
 	
@@ -134,152 +155,164 @@ In addition to the mentioned aspects, this project is supervised by reviewers. T
 In this section, the specific items to be tested in the software are described in detail.
 
 
-\subsubsection{Area of Testing1}
-In this section, it will be determined how the input of the program should be tested for conformity to standards.
+%\subsubsection{Input Testing}
+%In this section, it will be determined how the input of the program should be tested for conformity to standards.
 		
-\paragraph{Input Testing}
+%\paragraph{Input Testing}
 
+%\begin{enumerate}
+
+%\item{Input Testing\\}
+
+%Control: Automatic
+					
+%Initial State: True 
+					
+%Input: Input Matrix (The given graph matrix)
+					
+%Output: True or False
+					
+%How test will be performed: This test demonstrates that the input matrix is in the standard size.
+					
+
+%\end{enumerate}
+
+\subsubsection{Degree Centrality Testing}
+
+In this section, the outputs related to degree centrality are being tested.
 \begin{enumerate}
 
-\item{test-id1\\}
-
-Control: Manual
+\item{Test1: Bound Testing\\}	
+Control: Automatic\\				
+Initial State: null
 					
-Initial State: (0*0) 
+Input:  The outputs of degree centrality calculations.
 					
-Input: Input Matrix
-					
-Output: The size of the Matrix
+Output: nodes that their values of cenrality are out of bound.
 
-Test Case Derivation: size: (n*2 )
-					
-How test will be performed:  by using of the numpy library to calculate the size.
-					
+Test Case Derivation: A function should be written to demonstrate that the output for each node is within the range of zero to one.
 
-\end{enumerate}
+How test will be performed: It dermindes nodes that their centrality are less than 0 or more than 1.
+\item{Test2: Node Testing\\}
 
-\subsubsection{Area of Testing2}
-
-In this section, the output of the degree centrality calculation module is tested
 Control: Automatic
-
-\begin{enumerate}
-
-\item{test-id1\\}	
-Control: Manual				
-Initial State: null
-					
-Input: the out put of the function of DC (Degree Centrality)
-					
-Output: nodes that their values of cenrality are out of bound
-
-Test Case Derivation: a function should be developed 
-
-How test will be performed: it dermindes the node that their centrality are less than 0 or more than 1.
-\item{test-id2\\}
-
-Control: Manual
 					
 Initial State: null
 					
-Input: the out put of the function of DC (Degree Centrality)
+Input: The outputs of centrality degree calculations.
 					
 Output: Nodes for which the degree centrality has not been calculated.
 
-Test Case Derivation: a function should be developed 
+Test Case Derivation: A function should be written as a test function to demonstrate that centrality has been computed for all nodes present in the graph.
 
-\item{test-id3\\}
-
-Control: Manual
-					
-Initial State: null
-					
-Input: the out put of the function of DC (Degree Centrality)
-					
-Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
-
-Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
+How test will be performed: Nodes for which centrality has not been calculated are displayed.
 
 
 \end{enumerate}
-\subsubsection{Area of Testing3}
+\subsubsection{Closeness Centrality Testing}
 
-In this section, the output of the closeness centrality calculation module is tested
-Control: Automatic
+In this section, the outputs related to calculating closeness centrality are being tested.
 
 \begin{enumerate}
 
-\item{test-id1\\}	
-Control: Manual				
+\item{Test3: Bound Testing\\}	
+Control: Automatic	\\			
 Initial State: null
 					
-Input: the out put of the function of CC (Closeness Centrality)
+Input:  The outputs of degree centrality calculations.
 					
 Output: nodes that their values of cenrality are out of bound
 
-Test Case Derivation: a function should be developed 
+Test Case Derivation: A function should be written to demonstrate that the output for each node is within the range of zero to one.
 
-How test will be performed: it dermindes the node that their centrality are less than 0 or more than 1.
-\item{test-id2\\}
+How test will be performed: It dermindes nodes that their centrality are less than 0 or more than 1.
+\item{Test4: Node Testing\\}
 
-Control: Manual
+Control: Automatic
 					
 Initial State: null
 					
-Input: the out put of the function of CC (Closeness Centrality)
+Input:  The outputs of centrality degree calculations.
 					
 Output: Nodes for which the closenedd centrality has not been calculated.
 
-Test Case Derivation: a function should be developed 
+Test Case Derivation: A function should be written as a test function to demonstrate that centrality has been computed for all nodes present in the graph.
 
-\item{test-id3\\}
+How test will be performed: Nodes for which centrality has not been calculated are displayed.
 
-Control: Manual
-					
-Initial State: null
-					
-Input: the out put of the function of CC (Closeness Centrality)
-					
-Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
-
-Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
 
 
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
-Since resources and time for developing this software are limited, the only test conducted in this regard is documentation testing, which is performed by reviewers. They then provide their feedback in written form for further adjustments.
+Since resources and time for developing this software are limited, the only test conducted in this regard is maintainability and accuracy testing. 
 
-
-\subsubsection{Documents}
+\subsubsection{maintainability}
 		
-\paragraph{Document Testing}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{Test5: Code Testing\\}
 
-Type: Manual
+Type: Automatic
 					
 Initial State: -
 					
-Input/Condition: All documents shoulf be uploaded.
+Input/Condition: Program code
 					
-Output/Result: Reviewers' comments on the documentation.
+Output/Result: Coding errors
+
+Test Case Derivation: Using the pylint module
 					
-How test will be performed:  At least three reviewers read the documentation and provide feedback on any shortcomings.
+How test will be performed:  Highlighted are the areas where programming standards have not been followed, with explanations provided in the terminal.
+\end{enumerate}
+\subsubsection{Accuracy}
+\begin{enumerate}
+\item{Test6: Correctness Testing for DC\\}
+
+Control: Automatic
+					
+Initial State: null
+					
+Input:  The outputs of degree  centrality calculations.
+					
+Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
+
+Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
+
+How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
+
+\item{Test7: Correctness Testing for CC\\}
+
+Control: Automatic
+					
+Initial State: null
+					
+Input: The outputs of closeness centrality calculations.
+					
+Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
+
+Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
+
+How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
 
 \subsection{Traceability Between Test Cases and Requirements}
+
+
 \end{enumerate}
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	&R1 &R2 & R3 & R4 & Accuracy\\
+	&FR1 &FR2 & FR3 & FR4 &NFR1 &NFR2 & NFR3 & NFR4\\
 \hline
-Test 1     & X  &   &  &  & X \\ \hline
-Test 2    &  &  &  X &  & X\\ \hline
-Test 3     &  &  &  & X & X\\ \hline
+Test 1     & X& &  &  & X & & & \\ \hline
+Test 2    & &   X&  &  & X & & & \\ \hline
+Test 3     &   &   &  X&  & X & & & \\ \hline
+Test 4     &  &   &  &  X& X & & & \\ \hline
+Test 5    &  &   &  &  &  & &X & \\ \hline
+Test 6     &  &   &  &  & X & & & \\ \hline
+Test 7     &  &   &  &  & X & & & \\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Tests and Requirments in SRS}
 \label{Table:A_trace}
@@ -411,8 +444,6 @@ How test will be performed:
 \wss{Provide evidence that all of the modules have been considered.}
 				
 \bibliographystyle{plainnat}
-
-\bibliography{../../refs/References}
 
 \newpage
 

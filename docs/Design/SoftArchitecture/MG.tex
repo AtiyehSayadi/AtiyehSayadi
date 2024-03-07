@@ -33,8 +33,8 @@
 
 \begin{document}
 
-\title{Module Guide for \progname{}} 
-\author{\authname}
+\title{Module Guide for Centrality in Graphs} 
+\author{Atiyeh Sayadi}
 \date{\today}
 
 \maketitle
@@ -65,16 +65,17 @@ This section records information for easy reference.
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   AC & Anticipated Change\\
+CC & Closeness Centrality\\
+  CIG& Centrality in Graphs\\
   DAG & Directed Acyclic Graph \\
+DC & Degree Centrality\\
   M & Module \\
   MG & Module Guide \\
   OS & Operating System \\
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
 
@@ -150,33 +151,21 @@ unlikely changes are listed in Section \ref{SecUchange}.
 
 \subsection{Anticipated Changes} \label{SecAchange}
 
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
+This software, like other softwares, may undergo changes. These changes are as follows:
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] In the future, it is possible that this software will be developed in another environment such as NetLogo.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] This software can read the graph matrix directly from the input file as an adjacency matrix.
+\item[\refstepcounter{acnum} \actheacnum \label{computation}:]  In the future, this software can also perform computations on directed graphs.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
 
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
+The future changes of the software do not include the following items:
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The input file will only be in the form of a text file.
+\item[\refstepcounter{ucnum} \uctheucnum \label{measure}:] Other centrality measures will not be calculated by this software.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -188,7 +177,8 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Behaviour-Hiding Module
+\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Software Decision Module
 \end{description}
 
 
@@ -199,22 +189,13 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} & - \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+{Behaviour-Hiding Module} & GUI\\ & File\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Degree\\ & Closeness\\
 \bottomrule
 
 \end{tabular}
@@ -226,83 +207,80 @@ actually be implemented.
 
 The design of the system is intended to satisfy the requirements developed in
 the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table~\ref{TblRT}.
+between requirements and modules is listed in Table~\ref{TblRT}.\\\\
+\textbf{Functional requirments:}
+\begin{description}
+\item FR1: Degree centrality for each node must be calculated accurately.
+\item FR2: Closeness centrality for each node must be calculated accurately.
+\item FR3: Degree centrality must be calculated for all nodes.
+\item FR4: Closeness centrality must be calculated for all nodes.\\
+\end{description}
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+\textbf{Nonfunctional requirments:}
+\begin{description}
+\item NFR1: Accuracy
+\item NFR2: Usability
+\item NFR3: Maintainability
+\end{description}
+
 
 \section{Module Decomposition} \label{SecMD}
 
 Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  \emph{\progname{}} means the
-module will be implemented by the \progname{} software.
+proposed by \citet{ParnasEtAl1984}. 
+The following is an introduction to the modules and a brief explanation of each of them.
 
-Only the leaf modules in the hierarchy have to be implemented. If a dash
-(\emph{--}) is shown, this means that the module is not a leaf and will not have
-to be implemented.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
-
-\begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
-\end{description}
-
+\subsection{Hardware Hiding Modules }
+%\begin{description}
+%\item[Secrets:]The data structure and algorithm used to implement the virtual
+%  hardware.
+%\item[Services:]Serves as a virtual hardware used by the rest of the
+ % system. This module provides the interface between the hardware and the
+ % software. So, the system can use it to display outputs or to accept inputs.
+%\item[Implemented By:] OS
+%\end{description}
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+
+\subsubsection{File (M1)}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] Text file containing a graph matrix.
+\item[Services:] This module reads the initial graph matrix from a text file and calculates its adjacency matrix.
+\item[Implemented By:] CIG
+\item[Type of Module:] Data Access Module.
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{GUI (M2)}
+\begin{description}
+\item[Secrets:] Graphical User Interface (GUI) for displaying outputs.
+\item[Services:] This module utilizes the results of calculations from the Degree, Closeness, and File modules and displays the values separately on the nodes of the graph.
+\item[Implemented By:] CIG
+\item[Type of Module:] Graphical User Interface
+\end{description}
 
 
 \subsection{Software Decision Module}
 
+\subsubsection{Closeness(M3)}
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
+\item[Secrets:] Calculating the shortest paths from each node to all other nodes and then computing the closeness centrality for each node
+\item[Services:] Using the output obtained from the File module, which is the adjacency matrix for the graph, it is necessary to first calculate the shortest path for each node to all other nodes according to the formula of closeness centrality. Then, based on this calculation, closeness centrality is computed. The output of this module will be in the form of a matrix of size n * 2, where n is the number of nodes in the graph. In the output matrix, the centrality of each node will be displayed against each node.
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Implemented By:] CIG
 \end{description}
 
-\subsubsection{Etc.}
-
+\subsubsection{Degree(M4)}
+\begin{description}
+\item[Secrets:] Calculating the degree of each node in the graph and then calculating the degree centrality for each node in the graph.
+\item[Services:] This module first determines the degree of each node in the graph using the output of the File module. Then, with the degree of each node and the total sum of degrees of all nodes in the graph, it calculates the degree centrality for each node. The output of this module will be in the form of a matrix of size n * 2, where n is the number of nodes in the graph. In the output matrix, the centrality of each node will be displayed against each node.
+  % Changes in these modules are more likely to be motivated by a desire to
+  % improve performance than by externally imposed changes.
+\item[Implemented By:] CIG
+\end{description}
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -316,17 +294,13 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & M4 \\
+FR2 & M3\\
+FR3 & M4, M1\\
+FR4 & M3, M1\\
+NFR1 & M1, M2, M3, M4\\
+NFR2 & M1, M2, M3, M4\\
+NFR3 & M1, M2, M3, M4\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -339,18 +313,9 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+AC1 & M1, M2, M3, M4\\
+AC2 & M1\\
+AC3 & M2\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -359,40 +324,49 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
-correct execution of B may be necessary for A to complete the task described in
-its specification. That is, A {\em uses} B if there exist situations in which
-the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
-
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+Figure 1 illustrates a hierarchical view of the relationship between the modules.
+\begin{figure}[h!]
+\begin{center}
+ \includegraphics[width=0.6\textwidth]{GRAPH}
 \caption{Use hierarchy among modules}
-\label{FigUH}
+\label{Fig_SystemContext} 
+\end{center}
 \end{figure}
-
-%\section*{References}
 
 \section{User Interfaces}
 
-\wss{Design of user interface for software and hardware.  Attach an appendix if
-needed. Drawings, Sketches, Figma}
+Designing the user interface for this software is only for displaying outputs, in such a way that the user, by clicking on each button, will be shown the graph associated with it. 
+You can refer to the user interface image in Figure 2.
+
+\begin{figure}[h!]
+\begin{center}
+ \includegraphics[width=0.6\textwidth]{GUI}
+\caption{Graphical User Interface}
+\label{Fig_SystemContext} 
+\end{center}
+\end{figure}
 
 \section{Design of Communication Protocols}
 
-\wss{If appropriate}
-
 \section{Timeline}
 
-\wss{Schedule of tasks and who is responsible}
 
-\wss{You can point to GitHub if this information is included there}
+Table 4 displays the timeline for the development of each module and its respective developer.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{0.2\textwidth} p{0.4\textwidth}  p{0.4\textwidth}}
+\toprule
+ \textbf{Modules} & \textbf{Time} & \textbf{Responsible} \\
+\midrule
+File& 11-15 March& Atiyeh Sayadi\\
+Closeness & 16-22 March& Atiyeh Sayadi\\
+Degree & 23-30 March& Atiyeh Sayadi\\
+GUI & 1-3 April& Atiyeh Sayadi\\
+\bottomrule
+\end{tabular}
+\caption{Timeline}
+\end{table}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}

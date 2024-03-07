@@ -38,9 +38,9 @@ urlcolor=cyan          % color of external links
 
 \begin{document}
 
-\title{Module Interface Specification for \progname{}}
+\title{Module Interface Specification for Centrality in Graphs}
 
-\author{\authname}
+\author{Atiyeh Sayadi}
 
 \date{\today}
 
@@ -62,9 +62,23 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  AC & Anticipated Change\\
+CC & Closeness Centrality\\
+  CIG& Centrality in Graphs\\
+  DAG & Directed Acyclic Graph \\
+DC & Degree Centrality\\
+  M & Module \\
+ n & Total number of nodes \\
+  R & Requirement\\
+  SRS & Software Requirements Specification\\
+  UC & Unlikely Change \\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -76,17 +90,14 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for the centrality in graphs project. As stated earlier in various documents such as the SRS, this project aims to measure the centrality of each node in an undirected graph using two methods: degree centrality and closeness centrality.
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
-
+found at \url{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}. 
 \section{Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
+
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -95,7 +106,7 @@ with the addition that template modules have been adapted from
 multiple assignment statement and conditional rules follow the form $(c_1
 \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
 
-The following table summarizes the primitive data types used by \progname. 
+The following table summarizes the primitive data types used by CIG. 
 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
@@ -113,10 +124,7 @@ real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
-are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+The specification of CIG uses some derived data types: matrix. A matrix is a collection of elements arranged in rows and columns within a rectangular array. Each element in the matrix can be any scalar value, such as real numbers, complex numbers, or variables. In addition, CIG uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -131,21 +139,13 @@ The following table is taken directly from the Module Guide document for this pr
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding} & ~ \\
+{Hardware-Hiding Module} & - \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+{Behaviour-Hiding Module} & GUI \\ & File\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Degree\\ & Closeness\\
 \bottomrule
 
 \end{tabular}
@@ -154,34 +154,27 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of File } \label{Module} 
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
 
 \subsection{Module}
-
-\wss{Short name for the module}
+File 
 
 \subsection{Uses}
-
-
+N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-
+N/A
 \subsubsection{Exported Access Programs}
-
+\texttt{read\_file}
 \begin{center}
 \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+\texttt{read\_file} & - & Matrix & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -190,27 +183,26 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+N/A
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+N/A
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{description}
+\item 1: All elements of the input matrix must be numeric.
+\item 2: The output matrix is of size n*n.
+\end{description}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{read\_file}
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: - 
+\item output: \texttt{new\_matrix}
+\item exception: N/A  
 \end{itemize}
 
 \wss{A module without environment variables or state variables is unlikely to
@@ -222,10 +214,235 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
+
+\newpage
+
+\section{MIS of Degree} \label{Module} 
+
+
+\subsection{Module}
+Degree
+
+\subsection{Uses}
+File
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{6cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\texttt{init} & File & - & - \\
+\texttt{find\_degree} & - & Matrix & - \\
+\texttt{degree\_centrality} & - & Matrix & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\texttt{ \_\_matrix}
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+\begin{description}
+\item 1: The degree of each node should not exceed or be equal to n- 1.
+\item 2: The degree centrality for each node should range between 0 and 1.
+\item 3: Output should be available for all nodes.
+\end{description}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{init}
+\begin{itemize}
+\item transition: \texttt{ \_\_matrix}:= File 
+\item output: -
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{find\_degree}
+\begin{itemize}
+\item transition: - 
+\item output: {degree\_matrix}
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{degree\_centrality}
+\begin{itemize}
+\item transition: - 
+\item output: \texttt{degree\_centrality\_matrix}
+\item exception: N/A  
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of Closeness} \label{Module} 
+
+
+\subsection{Module}
+Closeness
+
+\subsection{Uses}
+File
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{4cm}|}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\texttt{init} & File & - & - \\
+\texttt{shortest\_path} & - & Matrix & - \\
+\texttt{closeness\_centrality} & - & Matrix & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\texttt{ \_\_matrix}
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+\begin{description}
+\item 1: The sum of shortest paths to other nodes for each node should not be less than n- 1.
+\item 2: The closeness centrality for each node should range between 0 and 1.
+\item 3: Output should be available for all nodes.
+\end{description}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{init}
+\begin{itemize}
+\item transition: \texttt{ \_\_matrix}:= File 
+\item output: -
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{shortest\_path}
+\begin{itemize}
+\item transition: - 
+\item output: {shortest\_path\_matrix}
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{closeness\_centrality}
+\begin{itemize}
+\item transition: - 
+\item output: \texttt{closeness\_centrality\_matrix}
+\item exception: N/A  
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+\newpage
+
+\section{MIS of GUI} \label{Module} 
+
+
+\subsection{Module}
+GUI 
+
+\subsection{Uses}
+File, Degree, Closeness
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{6cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\texttt{init} & tkinter .Tk & - & - \\
+\texttt{degree\_centrality} & - & image& - \\
+\texttt{closeness\_centrality} & - & image & - \\
+\texttt{show\_grapth\_matrix} & - & image & - \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{init}
+\begin{itemize}
+\item transition: 
+inteface:= tk.Tk\\
+inteface.title:= Show Graphs\\
+inteface.geometry:= 300x150\\
+\texttt{degree\_button}:= Degree Centrality\\
+\texttt{closeness\_button}:= Closeness Centrality\\
+\texttt{file\_button}:= The Main Graph\\
+
+\item output: -
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{degree\_centrality}
+\begin{itemize}
+\item transition: -
+\item output: image
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{closeness\_centrality}
+\begin{itemize}
+\item transition:-
+\item output: image
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{show\_grapth\_matrix}
+\begin{itemize}
+\item transition: -
+\item output: image
+\item exception: N/A  
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+N/A
 
 \newpage
 

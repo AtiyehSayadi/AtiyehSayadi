@@ -119,12 +119,17 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+matrix&$m^{i \times j}$ & matrix with i rows and j columns\\
+NodeT& ${\{char, \mathbb{N}\}}^+$& char, integer or both\\
+EdgeT& tuple of (NodeT, NodeT)& -\\
+Graph& set of EdgeT& -\\
+
 \bottomrule
 \end{tabular} 
 \end{center}
 
 \noindent
-The specification of CIG uses some derived data types: matrix. A matrix is a collection of elements arranged in rows and columns within a rectangular array. Each element in the matrix can be any scalar value, such as real numbers, complex numbers, or variables. In addition, CIG uses functions, which
+The specification of CIG uses some derived data types: matrix. A matrix is a collection of elements arranged in rows and columns within a rectangular array. Each element in the matrix can be any scalar value, such as real numbers, complex numbers, or variables. Also, graph is a collection of nodes and edges, where each node represents elements within the network, and the edges represent the connections between them. In addition, CIG uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -142,10 +147,10 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding Module} & - \\
 \midrule
 
-{Behaviour-Hiding Module} & GUI \\ & File\\
+{Behaviour-Hiding Module} & GUI \\ & File\\ &Graph\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & Degree\\ & Closeness\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Matrix\\ & Output\\
 \bottomrule
 
 \end{tabular}
@@ -159,22 +164,22 @@ The following table is taken directly from the Module Guide document for this pr
 
 
 \subsection{Module}
-File 
+File , Matrix, Hardware-Hiding
 
 \subsection{Uses}
 N/A
 \subsection{Syntax}
 
-\subsubsection{Exported Constants}
-N/A
+\subsubsection{Exported Types}
+NodeT= ${\{char, \mathbb{N}\}}^+$
 \subsubsection{Exported Access Programs}
-\texttt{read\_file}
+
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{2cm} p{2cm} p{2cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\texttt{read\_file} & - & Matrix & - \\
+\texttt{read\_file} & String & $NodeT^{n \times 2}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -187,30 +192,27 @@ N/A
 
 \subsubsection{Environment Variables}
 
-N/A
+file: A sequence of memory bits
 
 \subsubsection{Assumptions}
 
-\begin{description}
-\item 1: All elements of the input matrix must be numeric.
-\item 2: The output matrix is of size n*n.
-\end{description}
+N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \texttt{read\_file}
+\noindent \texttt{read\_file(s)}
 \begin{itemize}
 \item transition: - 
-\item output: \texttt{new\_matrix}
-\item exception: N/A  
+\item output:   $out:=\{\forall i:\mathbb{N}|i \in \{1..the\ number\ of\ distinguished\ elements\ in\ s\}\wedge \left(s1,s2\right)\in s: matrix\left [i,0\right]=s1\wedge matrix\left[i,1\right]=s2 \}$
+\item exception: -  
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+%\wss{A module without environment variables or state variables is unlikely to
+  %have a state transition.  In this case a state transition can only occur if
+  %the module is changing the state of another module.}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+%\wss{Modules rarely have both a transition and an output.  In most cases you
+  %will have one or the other.}
 
 \subsubsection{Local Functions}
 
@@ -218,14 +220,173 @@ N/A
 
 \newpage
 
-\section{MIS of Degree} \label{Module} 
+\section{MIS of Graph} \label{Module} 
 
 
 \subsection{Module}
-Degree
+Graph
 
 \subsection{Uses}
-File
+File, Matrix
+\subsection{Syntax}
+
+\subsubsection{Exported Types}
+EdgeT= tuple of (start: NodeT, end: NodeT)\\
+GraphT= set of EdgeT
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{p{6cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\texttt{build\_graph} & $NodeT^{n \times 2}$  & - & - \\
+\texttt{exist\_edge} & EdgeT & $\mathbb{B}$  & - \\
+\texttt{get\_degree} & NodeT & $\mathbb{N}$ & - \\
+\texttt{get\_shortest\_path} & NodeT, NodeT & $\mathbb{N}$ & - \\
+\texttt{degree\_centrality} & NodeT & $\mathbb{R}$ & - \\
+\texttt{closeness\_centrality} & NodeT & $\mathbb{R}$ & - \\
+
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+nodes: set of NodeT\\
+edges: GraphT
+
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+
+{build\_graph} is called before any other access programs.
+
+
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{build\_graph(g)}
+\begin{itemize}
+\item transition: $edges:= \{\left(s,e\right):  EdgeT| s,e \in g:\left(s,e\right)\}$, $nodes:= \{s: T| s \in g: s\}$
+\item output: -
+\item exception: -
+\end{itemize}
+
+\noindent \texttt{exist\_edge(s, e)}
+\begin{itemize}
+\item transition: -
+\item output: $out:= \exists \{\left(s,e\right)\: EdgeT| \left(s,e\right) \in edges: s,e\}$
+\item exception:-  
+\end{itemize}
+
+\noindent \texttt{get\_degree(n)}
+\begin{itemize}
+\item transition: -
+\item output: $out:= Sum(\{i,n: NodeT|  \left(n,i\right) \in edges: 1\})$
+\item exception: -
+\end{itemize}
+
+\noindent \texttt{get\_shortest\_path(s,n)}
+\begin{itemize}
+\item transition: -
+\item output: $out:= \{path: sequence\ of\ NodeT|\ path=\{s..n\}: |path|\ is\ minimum\} $
+\item exception: -   
+\end{itemize}
+
+\noindent \texttt{degree\_centrality(n)}
+\begin{itemize}
+\item transition: -
+\item output: $out:=\{n: NodeT|\ n \in nodes : \frac{get\_degree(n)}{|nodes| - 1} \} $
+\item exception: - 
+\end{itemize}
+
+\noindent \texttt{closeness\_centrality}
+\begin{itemize}
+\item transition: -
+\item output: $out:=\{n: NodeT|\ n \in nodes : \frac{|nodes |- 1}{\sum_{for\ each\ j\ \in nodes}{get\_shortest\_path(n,j)}} \} $
+\item exception: - 
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS GUI} \label{Module} 
+
+
+\subsection{Module}
+GUI
+
+\subsection{Uses}
+Graph, Output, Hardware-Hiding
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+\begin{center}
+\begin{tabular}{|p{6cm}|p{2.5cm}|p{2.5cm}|p{4cm}|}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\texttt{degree\_centrality} & GraphT& - & - \\
+\texttt{closeness\_centrality} & GraphT & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+N/A
+
+\subsubsection{Environment Variables}
+
+win: two-dimensional sequence of colored pixels
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \texttt{degree\_centrality(g)}
+\begin{itemize}
+\item transition: Adjusting the pixels of the win for displaying the graph g
+\item output: -
+\item exception: N/A  
+\end{itemize}
+
+\noindent \texttt{closeness\_centrality(g)}
+\begin{itemize}
+\item transition: Adjusting the pixels of the win for displaying the graph g 
+\item output: -
+\item exception: N/A  
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
+
+\section{MIS of Output} \label{Module} 
+
+
+\subsection{Module}
+Output 
+
+\subsection{Uses}
+Hardware-Hiding
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
@@ -236,18 +397,18 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\texttt{init} & File & - & - \\
-\texttt{find\_degree} & - & Matrix & - \\
-\texttt{degree\_centrality} & - & Matrix & - \\
+\texttt{output} & string, $\mathbb{N}$,.. & GUI & - \\
+
 \hline
 \end{tabular}
 \end{center}
+
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-\texttt{ \_\_matrix}
+N/A
 
 \subsubsection{Environment Variables}
 
@@ -255,120 +416,17 @@ N/A
 
 \subsubsection{Assumptions}
 
-\begin{description}
-\item 1: The degree of each node should not exceed or be equal to n- 1.
-\item 2: The degree centrality for each node should range between 0 and 1.
-\item 3: Output should be available for all nodes.
-\end{description}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \texttt{init}
-\begin{itemize}
-\item transition: \texttt{ \_\_matrix}:= File 
-\item output: -
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{find\_degree}
-\begin{itemize}
-\item transition: - 
-\item output: {degree\_matrix}
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{degree\_centrality}
-\begin{itemize}
-\item transition: - 
-\item output: \texttt{degree\_centrality\_matrix}
-\item exception: N/A  
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-N/A
-
-\newpage
-
-\section{MIS of Closeness} \label{Module} 
-
-
-\subsection{Module}
-Closeness
-
-\subsection{Uses}
-File
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-N/A
-\subsubsection{Exported Access Programs}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{4cm}|}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-\texttt{init} & File & - & - \\
-\texttt{shortest\_path} & - & Matrix & - \\
-\texttt{closeness\_centrality} & - & Matrix & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\texttt{ \_\_matrix}
-
-\subsubsection{Environment Variables}
-
-N/A
-
-\subsubsection{Assumptions}
-
-\begin{description}
-\item 1: The sum of shortest paths to other nodes for each node should not be less than n- 1.
-\item 2: The closeness centrality for each node should range between 0 and 1.
-\item 3: Output should be available for all nodes.
-\end{description}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \texttt{init}
-\begin{itemize}
-\item transition: \texttt{ \_\_matrix}:= File 
-\item output: -
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{shortest\_path}
-\begin{itemize}
-\item transition: - 
-\item output: {shortest\_path\_matrix}
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{closeness\_centrality}
-\begin{itemize}
-\item transition: - 
-\item output: \texttt{closeness\_centrality\_matrix}
-\item exception: N/A  
-\end{itemize}
-
-\subsubsection{Local Functions}
-
 N/A
 \newpage
 
-\section{MIS of GUI} \label{Module} 
+\section{MIS of Matrix} \label{Module} 
 
 
 \subsection{Module}
-GUI 
+Matrix
 
 \subsection{Uses}
-File, Degree, Closeness
+N/A
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
@@ -379,10 +437,8 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\texttt{init} & tkinter .Tk & - & - \\
-\texttt{degree\_centrality} & - & image& - \\
-\texttt{closeness\_centrality} & - & image & - \\
-\texttt{show\_grapth\_matrix} & - & image & - \\
+\texttt{Matrix} & string, $\mathbb{N}^{n \times n}$, list, ... & $\mathbb{N}^{n \times n}$, $\mathbb{N},..$  & - \\
+
 \hline
 \end{tabular}
 \end{center}
@@ -402,58 +458,12 @@ N/A
 
 N/A
 
-\subsubsection{Access Routine Semantics}
-
-\noindent \texttt{init}
-\begin{itemize}
-\item transition: 
-inteface:= tk.Tk\\
-inteface.title:= Show Graphs\\
-inteface.geometry:= 300x150\\
-\texttt{degree\_button}:= Degree Centrality\\
-\texttt{closeness\_button}:= Closeness Centrality\\
-\texttt{file\_button}:= The Main Graph\\
-
-\item output: -
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{degree\_centrality}
-\begin{itemize}
-\item transition: -
-\item output: image
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{closeness\_centrality}
-\begin{itemize}
-\item transition:-
-\item output: image
-\item exception: N/A  
-\end{itemize}
-
-\noindent \texttt{show\_grapth\_matrix}
-\begin{itemize}
-\item transition: -
-\item output: image
-\item exception: N/A  
-\end{itemize}
 
 
-\subsubsection{Local Functions}
-
-N/A
-
-\newpage
 
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
 
-\newpage
-
-\section{Appendix} \label{Appendix}
-
-\wss{Extra information if required}
 
 \section{Reflection}
 

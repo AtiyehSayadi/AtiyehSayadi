@@ -46,8 +46,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+March 12, 2024 & 1.0 & Initial draft\\
 \bottomrule
 \end{tabularx}
 
@@ -192,10 +191,10 @@ actually be implemented.
 {Hardware-Hiding Module} & - \\
 \midrule
 
-{Behaviour-Hiding Module} & GUI\\ & File\\ & Graph\\
+{Behaviour-Hiding Module} & Show Graph\\ & File\\ & Graph\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & Matrix\\ & Output\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Matrix\\ & GUI Provider\\
 \bottomrule
 
 \end{tabular}
@@ -247,23 +246,23 @@ The following is an introduction to the modules and a brief explanation of each 
 \subsubsection{File }
 
 \begin{description}
-\item[Secrets:] Storage location and file reading method.
-\item[Services:] This module reads the initial graph matrix from a text file and build the initial matrix.
+\item[Secrets:] The file format.
+\item[Services:] This module reads the initial file containing graph data from the input and returns the obtained graph using Graph module in the output.
 \item[Implemented By:] CIG
-\item[Type of Module:] Abstract data type
+\item[Type of Module:] Record
 \end{description}
 
-\subsubsection{GUI }
+\subsubsection{Show Graph }
 \begin{description}
 \item[Secrets:] Setting up user interface settings for displaying outputs.
-\item[Services:] This module utilizes the results of calculations from the  Graph modules and displays the values separately on the nodes of the graph.
+\item[Services:] This module generates output for both centrality measures, degree centrality and betweenness centrality, on the initial graph.
 \item[Implemented By:] CIG
 \item[Type of Module:] Abstract data type
 \end{description}
 
 \subsubsection{Graph }
 \begin{description}
-\item[Secrets:] Data structure for a graph using the concept of adjacency matrix.
+\item[Secrets:] Data structure for a graph using the concept of adjacency matrix and computational algorithms for graphs.
 \item[Services:] This module provides a data structure for a graph, which consists of a set of nodes and edges. Then, based on this information, it calculates the node degree, the shortest path from one node to other nodes, degree centrality, and closeness centrality.
 \item[Implemented By:] CIG
 \item[Type of Module:] Abstract data type
@@ -282,10 +281,10 @@ The following is an introduction to the modules and a brief explanation of each 
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Output}
+\subsubsection{GUI Provider}
 \begin{description}
 \item[Secrets:] Providing a graphical user interface.
-\item[Services:] Using the tkinter library and its functions in Python to create a graphical user interface (GUI).
+\item[Services:] Using the Tkinter library and its functions in Python to create a graphical user interface (GUI).
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
 \item[Implemented By:] Tkinter
@@ -308,9 +307,9 @@ FR1 & Graph \\
 FR2 & Graph\\
 FR3 & Graph\\
 FR4 & Graph\\
-NFR1 & Graph, File, GUI, Matrix, Output\\
-NFR2 & Output, GUI\\
-NFR3 & Graph, File, GUI, Matrix, Output\\
+NFR1 & Graph, File, GUI Provider, Matrix, Show Graph\\
+NFR2 & Graph, File, GUI Provider, Matrix, Show Graph\\
+NFR3 & Graph, File, GUI Provider, Matrix, Show Graph\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -324,7 +323,7 @@ NFR3 & Graph, File, GUI, Matrix, Output\\
 \textbf{AC} & \textbf{Modules}\\
 \midrule
 AC1 & Graph\\
-AC2 &Graph\\
+AC2 &Graph, Show Graph\\
 AC3 & File\\
 \bottomrule
 \end{tabular}
@@ -361,10 +360,8 @@ Table 4 displays the timeline for the development of each module and its respect
  \textbf{Modules} & \textbf{Time} & \textbf{Responsible} \\
 \midrule
 File& 20-25 March& Atiyeh Sayadi\\
-Graph & 26- 31 March& Atiyeh Sayadi\\
-GUI & 1-10 April& Atiyeh Sayadi\\
-Matrix & 20- 31 March& Atiyeh Sayadi\\
-Output & 1-10 April& Atiyeh Sayadi\\
+Graph & 12-20 March& Atiyeh Sayadi\\
+Show Graph & 25-29 April& Atiyeh Sayadi\\
 \bottomrule
 \end{tabular}
 \caption{Timeline}

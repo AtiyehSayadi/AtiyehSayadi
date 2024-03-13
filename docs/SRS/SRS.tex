@@ -222,8 +222,7 @@ The aim of creating this document is to outline the needs, conditions, goals, an
 
 \subsection{Scope of Requirements} 
 
-
-This project does not encompass various methods for calculating centrality in graphs. In other words, it only utilizes the closeness  and degree methods. Additionally, selecting the best criterion for centrality computation is not within the scope of this project's implementation agenda. For instance, other central criteria such as flexibility, pressure, power, etc., will not be calculated by the software. Lastly, weighted and directed graphs will not be examined in this project.
+This project aims to calculate the importance of a node in a graph using the concepts of centrality degree and closeness centrality. The current graph is directed and unweighted. The goal of this project is not to introduce the best metric but merely to compare these two metrics in the graph.
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
@@ -305,14 +304,14 @@ This project can model any network in which directionality is not significant, i
 
 
 \subsubsection{Goal Statements}
-
+This project attempts to take a matrix representing the communication graph in a network as input in order to:
 
 \begin{itemize}
 
 \item[GS\refstepcounter{goalnum}\thegoalnum \label{g_degree}:] 
-Calculating degree centrality for each node.
+Calculate degree centrality for each node.
 \item[GS\refstepcounter{goalnum}\thegoalnum \label{g_closeness}:]
-Calculating closeness centrality for each node.
+Calculate closeness centrality for each node.
 
 \end{itemize}
 
@@ -343,17 +342,19 @@ The purpose of this project is to calculate centrality and proximity measures in
 \noindent
 \deftheory
 % #2 refname of theory
-{TM:DC}
+{TM1:DC}
 % #3 label
 {Degree Centrality}
 % #4 equation
-{${DC (i)= \frac{\sum \text{edge}(i,j)}{N - 1}}$ 
+{${DC (i)= \frac{\sum \text{edge}(i,j)}{N - 1}}$ \\
+N: Total number of nodes,\\
+$\text{edge}(i,j) \in \{0, 1\}, where\ there\ is\ an\ edge\ between\ to\ nodes\ is\ 1\ else\ 0.$
 }
 % #5 description
 {
   Degree centrality looks at
 how many connections each node has, and if a node has a lot of connections, it’s
-considered more important.to calcute DC for each node we need at first calculate degree of node. Degree of node is the number of edged that are direcly connectod to the node. After that we should devide the result to the number of nodes in the graph -1.
+considered more important. To calcute DC for each node we need at first calculate degree of node. Degree of node is the number of edged that are direcly connectod to the node. Since the graph is undirected, the degree of each node is equal to the total number of edges connected to that node(\aref{A_directed}). After that we should divide the result to the number of nodes in the graph -1. 
 }
 % #6 Notes
 {
@@ -365,7 +366,7 @@ None.
 }
 % #8 Referenced by
 {
-\dref{g_dc},\iref{i_dc}
+\iref{i_dc}
 }
 % #9 Preconditions
 {
@@ -378,7 +379,7 @@ None
 \noindent
 \deftheory
 % #2 refname of theory
-{TM:CC}
+{TM2:CC}
 % #3 label
 {Closeness Centrality}
 % #4 equation
@@ -389,6 +390,7 @@ None
 % #5 description
 {
 It checks how close a node is to all the other nodes in the graph. To calculate average distance from node i to all other node, the sum of shortest path from node i to all other nodes should be computed, and the result must divide to total number of nodes -1. Then it must be reversed to find the CC node i.
+
 }
 % #6 Notes
 {
@@ -400,7 +402,47 @@ None.
 }
 % #8 Referenced by
 {
-\dref{g_cc},\iref{i_cc}
+\iref{i_cc}
+}
+% #9 Preconditions
+{
+None
+}
+% #1 derivation - not applicable by default
+{}
+
+\noindent
+\deftheory
+% #2 refname of theory
+{TM3:SHP}
+% #3 label
+{Shortest Path}
+% #4 equation
+{ $d(i,j)=min(d(i,k)+d(k,j))$\\
+$\text{k: a node between i and j.}$
+~\newline
+ 
+}
+% #5 description
+{
+The sum of paths with a length of 1 through which we will 
+reach from the source node to the destination node. This path is the shortest path between these two nodes in the graph. Since the graph is undirected, the path from node 
+i to node 
+j is equal to the path from node 
+j to node 
+i(\aref{A_directed}).\\
+}
+% #6 Notes
+{
+None.
+}
+% #7 Source
+{
+  \url{https://brilliant.org/wiki/dijkstras-short-path-finder/}
+}
+% #8 Referenced by
+{
+TM2,\iref{i_cc}
 }
 % #9 Preconditions
 {
@@ -431,111 +473,25 @@ Label &\bf Graph \\
 % \hline
 SI Units&\si-\\
 \hline
-Equisions&\si-  \\
+Equations&\si-  \\
 \hline
 Description &
-Graph is a collection of nodes connected by edges.
-It has applications in many fields such as algorithm design and 
-   analysis, game theory and network theory.
+A graph 
+G consists of two disjoint sets: a set of vertices (or nodes) 
+V and a set of edges (or links) 
+E. Each edge in the graph is a combination between two vertices, representing the relationship between them. This relationship may be directed or undirected, and each edge may have a weight (or value) indicating the level of influence or importance of that relationship between two vertices.
 
 \\
 \hline
   Source & https://www.geeksforgeeks.org/graph-types-and-applications/ \\
   \hline
-  Ref.\ By & TM1, TM2,\dref{g_centrality},\dref{g_dc},\dref{g_cc},\ddref{degree},\iref{i_dc},\iref{i_cc}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum\label{g_centrality}\\
-\hline
-Label &\bf Centrality \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si-\\
-\hline
-Equisions&\si-  \\
-\hline
-Description &
-"Centrality" is a measure used to identify the most important nodes in a network.
-
-\\
-
-\hline
-  Source & https://visiblenetworklabs.com/2021/04/16/understanding-network-centrality/ \\
-  \hline
-  Ref.\ By & TM1, TM2,\dref{g_dc},\dref{g_cc},\iref{i_dc},\iref{i_cc}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum\label{g_dc}\\
-\hline
-Label &\bf Degree Centrality \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si-\\
-\hline
-Equisions&\  ${DC (i)= \frac{\sum \text{edge}(i,j)}{N - 1}}$ \\
-\hline
-Description &
-Degree centrality looks at how many connections each node has, and if a node has a lot of connections, it’s considered more important.
-
-
-\\
-
-\hline
-  Source & https://www.geeksforgeeks.org/degree-centrality-centrality-measure/ \\
-  \hline
-  Ref.\ By & TM1, \iref{i_dc}\\
+  Ref.\ By & TM1, TM2,TM3,\ddref{degree},\iref{i_dc},\iref{i_cc}\\
   \hline
 \end{tabular}
 \end{minipage}\\
 
 
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum\label{g_cc}\\
-\hline
-Label &\bf Centrality Centrality \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si-\\
-\hline
-Equisions&\  ${CC (i)= \frac{N-1}{\sum d(i,j)}}$ 
-~\newline
-$d(i,j)  $ = The shortest path from i to j.\\
-\hline
-Description &
-Checks how close a node is to all the other nodes in the graph.
 
-\\
-
-\\
-\hline
-  Source & https://en.wikipedia.org/wiki/Centrality\\
-  \hline
-  Ref.\ By & TM2, \iref{i_cc}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
 
 
 \subsubsection{Data Definitions}\label{sec_datadef}
@@ -561,7 +517,9 @@ Symbol &$-$\\
 % \hline
   SI Units & \-\\
   \hline
-Equation& $Degree(i)=\sum edge(i,j)$ \\
+Equation& $Degree(i)=\sum_{i=0}^{N-1} edge(i,j)$,  $\text{N= total number of nodes}$
+,  $\text{edge}(i,j) \in \{0, 1\}$\\
+
   \hline
   Description & 
                
@@ -570,7 +528,7 @@ In graph theory, the degree of a node is the number of edges directly connected 
   \hline
  Sources& https://www.geeksforgeeks.org/degree-centrality-centrality-measure/ \\
   \hline
-  Ref.\ By & TM1,\dref{g_graph},\dref{g_centrality},\dref{g_dc},\ddref{degree},\iref{i_dc}\\
+  Ref.\ By & TM1,\dref{g_graph},\ddref{degree},\iref{i_dc}\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -599,7 +557,7 @@ The adjacency matrix, also called the connection matrix, is a matrix containing 
   \hline
  Sources& https://byjus.com/maths/adjacency-matrix/ \\
   \hline
-  Ref.\ By & TM1,\dref{g_graph},\dref{g_centrality},\dref{g_dc},\dref{g_cc},\ddref{degree},\iref{i_dc}, ,\iref{i_cc}\\
+  Ref.\ By & TM1,TM2,TM3,\dref{g_graph},\ddref{degree},\iref{i_dc}, ,\iref{i_cc}\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -629,7 +587,7 @@ In this section, a computational model of  degree and closeness centrality for e
   \hline
   Label& Degree Centrality\\
   \hline
-  Input& \ddref{matrix}\\
+  Input& $\mathbb{N}^{n \times 2}$. \\
   \hline
   Output& The value of degree centrality for each node \\
   \hline
@@ -639,7 +597,7 @@ In this section, a computational model of  degree and closeness centrality for e
   Sources& \url{https://en.wikipedia.org/wiki/Degree_(graph_theory)}
  \\
   \hline
-  Ref.\ By & -\\
+  Ref.\ By & TM1\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -660,7 +618,7 @@ In this section, a computational model of  degree and closeness centrality for e
   \hline
   Label& Closeness Centrality\\
   \hline
-  Input& \ddref{matrix}\\
+  Input& $\mathbb{N}^{n \times 2}$\\
   \hline
   Output& The value of closeness centrality for each node \\
   \hline
@@ -670,7 +628,7 @@ In this section, a computational model of  degree and closeness centrality for e
   Sources& \url{https://en.wikipedia.org/wiki/Centrality)}
  \\
   \hline
-  Ref.\ By & -\\
+  Ref.\ By & TM2, TM3\\
   \hline
 \end{tabular}
 \end{minipage}\\
@@ -691,7 +649,7 @@ The input utilizes a text file to present the matrix of relationships in the gra
   \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
                              \textbf{Typical Value} & \textbf{Uncertainty}\\
   \midrule 
-  $Matrix  M$ & $|M| > 0$ & Integer value &  1  & \,
+$\mathbb{N}^{n \times 2}$ & $|M| > 0$ & Integer value &  1  & \,
   \\
   \bottomrule
 \end{longtable*}
@@ -710,9 +668,9 @@ Output of this software is a set of numbers representing the centrality of each 
   \toprule
   \textbf{Var} & \textbf{Physical Constraints} \\
   \midrule 
-  $DC(i)$ & $ 0 \leq DC(i) \leq 1$
+  $DC(i)$ & $ \{\forall i: \mathbb{N}| 0<= i < N, 0<=DC(i)<=1\}$
   \\
- $CC(i)$ & $ 0 \leq CD(i) \leq 1$
+ $CC(i)$ & $ \{\forall i: \mathbb{N}| 0<= i < N, 0<=CC(i)<=1\}$
 \\
   \bottomrule
 \end{longtable*}
@@ -746,16 +704,17 @@ In this section, non-functional requirements of the software are expressed in th
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
   \textbf{Accuracy} \
-This software should be developed in a way that ensures the reliability and accuracy of output generation performance.
+The most important criterion for computational software is the accuracy and precision of the calculations. For this reason, all computations performed by this software must be accurate. To ensure this, considering that we know the range of outputs between zero and one, and there are libraries that calculate these values, we can ascertain the correctness of the software's performance.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-Codes should be developed in a manner and within an environment that allows them to be usable across different operating systems and conditions. Additionally, it's necessary for the user to be able to work with them comfortably.
+Another requirement of this software is its usability, which will be confirmed by the users who work with it.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
   \textbf{Maintainability} 
-Efforts should be made to minimize side effects between functions at minimum. Additionally, it is necessary for the names of functions, variables, and parameters to clearly reflect their functionality.
+
+The software must be maintainable. Modular design in a way that changes in one module have minimal impact on other modules can fulfill this requirement.
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
   \textbf{Portability}
-The software must be designed in such a way that it can be executed in different conditions and environments.
+The software must be designed in such a way that it can be executed in different conditions and environments. For example, the code for this software is being developed in a Windows environment, and it should be able to run correctly on Linux as well.
 
 
 \end{itemize}
@@ -763,8 +722,7 @@ The software must be designed in such a way that it can be executed in different
 \subsection{Rationale}
 
 
-In this project, efforts have been made to avoid using weighted and directed graphs because these graph models increase computational complexity. Additionally, since the degree centrality and closeness centrality calculations yield different results in directed graphs, the computation methods would also differ.
-
+In this project, efforts have been made to avoid using weighted and directed graphs because these graph models increase computational complexity. 
 \section{Likely Changes}    
 
 \noindent \begin{itemize}
@@ -807,10 +765,8 @@ the assumptions.
 \hline
 TM1     & X& \\ \hline
 TM2     & X& X \\ \hline
+TM3   &X&X \\ \hline
 \dref{g_graph}     & & \\ \hline
-\dref{g_centrality}    & & \\ \hline
-\dref{g_dc}      & X& \\ \hline
-\dref{g_cc}    & X& X \\ \hline
 \ddref{degree}   & X& \\ \hline
 \iref{i_dc}    & X&\\ \hline
 \iref{i_cc}    & X& X\\ \hline
@@ -824,17 +780,15 @@ TM2     & X& X \\ \hline
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline        
-	& TM1&TM2&\dref{g_graph}&\dref{g_centrality}&\dref{g_dc}&\dref{g_cc}&\ddref{degree}&\iref{i_dc}&\iref{i_cc}\\
+	& TM1& TM2& TM3& \dref{g_graph}& \ddref{degree}& \iref{i_dc}& \iref{i_cc}\\
 \hline
-TM1& & & & &X& & &X& \\ \hline
-TM2& & & & & &X& & &X\\ \hline
-\dref{g_graph}&X&X&X&X&X&X&X&X&X\\ \hline
-\dref{g_centrality}& & & & & &X&X&X&X\\ \hline
-\dref{g_dc}& & & & & & & &X&\\ \hline
-\dref{g_cc}& & & & & & & & &X\\ \hline
-\ddref{degree}&X& & X&X&X& & &X& \\ \hline
-\iref{i_dc}& & & & & & & & & \\ \hline
-\iref{i_cc}& & & & & & & & & \\ \hline
+TM1& & & & X& X& X& \\ \hline
+TM2& & & & X& & &X \\ \hline
+TM3& & X& & X & & & X\\ \hline
+\dref{g_graph}& X& X& X& X& X& X& X\\ \hline
+\ddref{degree}& X& & & X& X& X&  \\ \hline
+\iref{i_dc}& X& & & & & &  \\ \hline
+\iref{i_cc}& & X& X& & & & \\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
 \label{Table:trace}
@@ -844,11 +798,11 @@ TM2& & & & & &X& & &X\\ \hline
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-	&\iref{i_dc}& \iref{i_cc}\\ \hline
-\rref{R_Inputs}          &X& X\\ \hline
-\rref{R_Calculate}         & X&X\\ \hline
-\rref{R_VerifyOutput}         &X&X \\ \hline
-\rref{R_Output}         &X& X\\ \hline
+	& \iref{i_dc}& \iref{i_cc}\\ \hline
+\rref{R_Inputs}          &X& \\ \hline
+\rref{R_Calculate}         & X&\\ \hline
+\rref{R_VerifyOutput}         & &X \\ \hline
+\rref{R_Output}         & & X\\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
 \label{Table:R_trace}

@@ -245,6 +245,7 @@ GraphT= ${\mathbb{N}}^ {n\times n}$
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 \texttt{GraphT} & ${\mathbb{N}}$  & GraphT& - \\
+\texttt{add\_edge} & $\mathbb{N}$&-  \\
 \texttt{exist\_edge} & $\mathbb{N}$,$\mathbb{N}$ & $\mathbb{B}$  & - \\
 \texttt{get\_degree} & $\mathbb{N}$ & $\mathbb{N}$ & - \\
 \texttt{get\_shortest\_path} & $\mathbb{N}$,$\mathbb{N}$ & $\mathbb{N}$ & - \\
@@ -282,6 +283,13 @@ N/A
 \item exception: -
 \end{itemize}
 
+\noindent \texttt{add\_edge(s, e)}
+\begin{itemize}
+\item transition: $graph[s,e]:=1,\ graph[e,s]:=1$
+\item output: -
+\item exception:-  
+\end{itemize}
+
 \noindent \texttt{exist\_edge(s, e)}
 \begin{itemize}
 \item transition: -
@@ -292,7 +300,7 @@ N/A
 \noindent \texttt{get\_degree(n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= {\sum_{j=0}^{|graph-1|}{graph[n,j]}}$
+\item output: $out:= {\sum_{j=0}^{|graph|-1}{graph[n,j]}}$
 \item exception: -
 \end{itemize}
 
@@ -313,7 +321,7 @@ N/A
 \noindent \texttt{closeness\_centrality(n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= \frac{|graph|- 1}{\sum_{j=0}^{|graph-1|}{get\_shortest\_path(n,j)}} $
+\item output: $out:= \frac{|graph|- 1}{\sum_{j=0}^{|graph|-1}{get\_shortest\_path(n,j)}} $
 \item exception: - 
 \end{itemize}
 

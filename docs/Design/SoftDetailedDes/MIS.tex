@@ -209,7 +209,7 @@ N/A
 \noindent \texttt{read\_file(s)}
 \begin{itemize}
 \item transition: - 
-\item output:   $out:=\{\forall i, j:\mathbb{N}| \left(i, j\right)\in file: 1 \}$
+\item output:   $out:= \{0,1\}^{n \times n}$
 \item exception: -  
 \end{itemize}
 
@@ -278,50 +278,47 @@ N/A
 \noindent \texttt{GraphT(g)}
 \begin{itemize}
 \item transition: 
-\item output: $out:=\{\forall i, j:\mathbb{N}| \left(i, j\right)\in g: 1 \}$
+\item output: $out:= \{0\}^{n \times n}$
 \item exception: -
 \end{itemize}
 
 \noindent \texttt{exist\_edge(s, e)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= \exists \{s,e: \mathbb{N}| graph\left(s,e\right) =1: \left(s,e\right) \}$
+\item output: $out:= if\ graph[s,e] ==1\Rightarrow true,\ else\Rightarrow\ false$
 \item exception:-  
 \end{itemize}
 
 \noindent \texttt{get\_degree(n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= Sum(\{\forall n, i:\mathbb{N}| graph\left(n, i\right) =1: 1 \})$
+\item output: $out:= {\sum_{j=0}^{|graph-1|}{graph[n,j]}}$
 \item exception: -
 \end{itemize}
 
 \noindent \texttt{get\_shortest\_path(s,n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= \{path: sequence\ of\ \mathbb{N}|\ (\forall i, j:\mathbb{N}| \left(i, j\right)\in Path: 1): |path|\ is\ minimum\} $
+\item output: $out:=Min(|s,a1,a2,..n|) \\where\ a1, a2, .. are\ the\ nodes\ between\ a\ and\ n\ on\ the\ path\ from\ s\ to\ n.$
 \item exception: -   
 \end{itemize}
 
 \noindent \texttt{degree\_centrality(n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:=\{n: \mathbb{N}|\ n \in file : \frac{get\_degree(n)}{|file| - 1} \} $
+\item output: $out:=\frac{get\_degree(n)}{|graph| - 1}  $
 \item exception: - 
 \end{itemize}
 
 \noindent \texttt{closeness\_centrality(n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:=\{n: \mathbb{N}|\ n \in file : \frac{|file|- 1}{\sum_{for\ each\ j\ \in nodes}{get\_shortest\_path(n,j)}} \} $
+\item output: $out:= \frac{|graph|- 1}{\sum_{j=0}^{|graph-1|}{get\_shortest\_path(n,j)}} $
 \item exception: - 
 \end{itemize}
 
 \subsubsection{Local Functions}
-
-$SUM(a):  \mathbb{N} \Rightarrow \mathbb{N}$,\\
-   $SUM(a)=SUM + a$
-
+N/A
 \newpage
 
 \section{MIS Show Graph} \label{Module} 

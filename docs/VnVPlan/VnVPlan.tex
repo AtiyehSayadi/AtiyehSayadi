@@ -17,7 +17,7 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for Centrality in Graphs{}} 
+\title{ System Verification and Validation Plan for Centrality in Graphs{}} 
 \author{Atiyeh Sayadi}
 \date{\today}
 	
@@ -31,7 +31,8 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 Feburary 14,  2024 & 1.0 & Initial draft\\
-Date 2 & 1.1 & Notes\\
+March 22, 2024& 1.1 & Second review\\
+April 1, 2024& 1.2 & Unit testing\\
 \bottomrule
 \end{tabularx}
 
@@ -43,10 +44,9 @@ Date 2 & 1.1 & Notes\\
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
+
 
 \listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -77,37 +77,37 @@ This section includes symbols and symbols used for developing this document.
 This document is created to review and confirm the project from its early stages of project clarification to design and implementation. It will cover various aspects, including setting up documents and using different techniques and tools for testing the project.
 
 \section{General Information}
+In this section, a brief overview of the project and its dimensions for testing purposes, as well as the purpose of writing this document and the documents used in drafting this project, are provided.
 
 \subsection{Summary}
 
 We want to design software that calculates closeness centrality and degree centrality for each node in a given graph, represented in the form of a numerical matrix of nodes and edges. Since this software is computational in nature, the accuracy and performance of functions and modules, including the  main modules that calculate closeness centrality and degree centrality, are crucial. Therefore, it is necessary for this software to be tested and validated from various aspects. This document serves as a roadmap for testing this software from pre-development to post-development stages.
 \subsection{Objectives}
 
-The purpose of developing this document is to accurately measure the correctness and performance of modules and the overall software, and to verify the software. For example, at the end and after generating the output, it is necessary to know how valid and accurate the produced results are. To achieve this, we can use library functions in Python that perform these calculations and compare the software output with them. Additionally, this document will not cover all aspects of software testing because, for instance, since we are developing a simple  user interface for the software, usability testing is not relevant.
-
+The purpose of developing this document is to ensure the accuracy and reliability of the project from various aspects. Accordingly, it is necessary for the project to be tested from different perspectives and stages based on the defined requirements. Since the functional requirements of the final system are defined based on the accuracy and precision of the outputs, this issue encompasses a significant portion of the tests. Additionally, since this system will provide a simple user interface, it does not seem necessary to perform usability testing for non-functional requirements. Furthermore, due to time constraints, it is not feasible to install the software on various systems to fully assess its portability.
 \subsection{Relevant Documentation}
 
-At this stage of document setup, other documents such as the Software Requirements Specification (SRS),  the MIS ans TH MG have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in these documents.
+At this stage of document setup, other documents such as the Software Requirements Specification (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/SRS/SRS.pdf}{SRS}),  the \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{MIS} and \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftArchitecture/MG.pdf}{MG} have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in these documents.
 
 
 \section{Plan}
-The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. Therefore, documents such as the SRS, the  MIS and the MG need to be reviewed and verified from various perspectives.
+The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. In the first stage, it is necessary to identify which individuals are involved in testing this project and what each person's role is. Then, the Software Requirements Specification (SRS) document is reviewed as the first important document for testing this software. Following that, the testing procedure for design documents, including even this test document, is examined, and then the final software testing is introduced. Since testing is carried out both automatically and manually, automated testing tools will also be introduced.
 
 \subsection{Verification and Validation Team}
 
-This software is being developed individually. Therefore, initially, it is the developer's responsibility to ensure the correctness of its functioning and a proper understanding of the requirements. Additionally, reviewers can inform about any issues encountered during each stage of development.
+This software is being developed individually. Therefore, initially, it is the developer's responsibility to ensure the correctness of its functioning and a proper understanding of the requirements. Additionally, reviewers can inform about any issues encountered during each stage of development. The list of individuals and their responsibilities is provided in Table 1.
 
 
 \begin{table}[h!]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	& \textbf{SRS }& \textbf{VnV}& \textbf{MIS/MG} \\
+ \textbf{Reviewers	}& \textbf{SRS }& \textbf{VnV}& \textbf{MIS/MG} \\
 \hline
 Atiyeh Sayadi& X& X& X \\ \hline
 Yiding Li & X& X& X \\ \hline
-Tanya Djavaherpour& X& & \\ \hline
-Cynthia Liu& & X& \\ \hline
+Tanya Djavaherpour& X&  & \\ \hline
+Cynthia Liu&  & X& \\ \hline
 Waqar Awan& & & X \\ \hline
 Dr.Spencer Smith& X& X& X \\ \hline
 \end{tabular}
@@ -115,6 +115,7 @@ Dr.Spencer Smith& X& X& X \\ \hline
 \label{Table:2}
 \end{table}
 
+\newpage
 \subsection{SRS Verification Plan}
 
 The SRS document can be verified by reviewers according to the following:\\
@@ -141,10 +142,10 @@ In the final stage, the software needs to be approved. This approval involves:\\
 1. Verification of whether the software has been developed according to the requirements, goals, algorithms, and assumptions specified in the SRS document or not.\\
 2. Checking whether the final software conforms to the design documents from various aspects or not.\\
 3. Ensuring whether the output is clear or not.\\
-
+In this stage, besides the review conducted by the Dr.Spencer Smith, it is necessary to develop automated tests to confirm the accuracy of the software from various aspects.
 \subsection{Automated Testing and Verification Tools}
 
-As mentioned, this software will primarily be tested for accuracy and performance. Additionally, the focus will be mainly on unit testing and system testing. Therefore, it is likely that pytest will be used for testing this software. Furthermore, for addressing issues related to coding errors and standardizing them, pylint will be utilized.
+As mentioned, this software will primarily be tested for accuracy and performance. Additionally, the focus will be mainly on unit testing and system testing. Therefore, Pytest will be used for testing this software. Furthermore, for addressing issues related to coding errors and standardizing them, pylint will be utilized.
 
 \subsection{Software Validation Plan}
 
@@ -191,22 +192,14 @@ Input:  The outputs of degree centrality calculations.
 					
 Output: nodes that their values of cenrality are out of bound.
 
-Test Case Derivation: A function should be written to demonstrate that the output for each node is within the range of zero to one.
+Test Case Derivation: Based on requirements 1 and 2 of this project, it is necessary for the degree centrality to be accurately calculated for all nodes. We know that this metric for each node is between zero and one. Therefore, a function needs to be written to evaluate this value for each node based on the allowable range and report any discrepancies found.
+
+
+
+
+
 
 How test will be performed: It dermindes nodes that their centrality are less than 0 or more than 1.
-\item{Test2: Node Testing\\}
-
-Control: Automatic
-					
-Initial State: null
-					
-Input: The outputs of centrality degree calculations.
-					
-Output: Nodes for which the degree centrality has not been calculated.
-
-Test Case Derivation: A function should be written as a test function to demonstrate that centrality has been computed for all nodes present in the graph.
-
-How test will be performed: Nodes for which centrality has not been calculated are displayed.
 
 
 \end{enumerate}
@@ -216,7 +209,7 @@ In this section, the outputs related to calculating closeness centrality are bei
 
 \begin{enumerate}
 
-\item{Test3: Bound Testing\\}	
+\item{Test2: Bound Testing\\}	
 Control: Automatic	\\			
 Initial State: null
 					
@@ -224,22 +217,10 @@ Input:  The outputs of degree centrality calculations.
 					
 Output: nodes that their values of cenrality are out of bound
 
-Test Case Derivation: A function should be written to demonstrate that the output for each node is within the range of zero to one.
+Test Case Derivation: Based on requirements 3 and 4 of this project, it is necessary for the closeness centrality to be accurately calculated for all nodes. We know that this metric for each node is between zero and one. Therefore, a function needs to be written to evaluate this value for each node based on the allowable range and report any discrepancies found.
 
 How test will be performed: It dermindes nodes that their centrality are less than 0 or more than 1.
-\item{Test4: Node Testing\\}
 
-Control: Automatic
-					
-Initial State: null
-					
-Input:  The outputs of centrality degree calculations.
-					
-Output: Nodes for which the closenedd centrality has not been calculated.
-
-Test Case Derivation: A function should be written as a test function to demonstrate that centrality has been computed for all nodes present in the graph.
-
-How test will be performed: Nodes for which centrality has not been calculated are displayed.
 
 
 
@@ -253,7 +234,7 @@ Since resources and time for developing this software are limited, the only test
 
 \begin{enumerate}
 
-\item{Test5: Code Testing\\}
+\item{Test3: Code Testing\\}
 
 Type: Automatic
 					
@@ -269,7 +250,7 @@ How test will be performed:  Highlighted are the areas where programming standar
 \end{enumerate}
 \subsubsection{Accuracy}
 \begin{enumerate}
-\item{Test6: Correctness Testing for DC\\}
+\item{Test4: Correctness Testing for DC\\}
 
 Control: Automatic
 					
@@ -279,11 +260,11 @@ Input:  The outputs of degree  centrality calculations.
 					
 Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
 
-Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
+Test Case Derivation: Using the NetworkX library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program(Based on requirements 1 and 2).
 
 How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
 
-\item{Test7: Correctness Testing for CC\\}
+\item{Test5: Correctness Testing for CC\\}
 
 Control: Automatic
 					
@@ -293,7 +274,7 @@ Input: The outputs of closeness centrality calculations.
 					
 Output: Nodes whose centrality contradicts what is calculated by library functions for this criterion.
 
-Test Case Derivation: Using the networkx library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program.
+Test Case Derivation: Using the NetworkX library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program(Based on requirements 3 and 4).
 
 How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
 
@@ -307,142 +288,170 @@ How test will be performed: Nodes for which the calculated centrality differs fr
 \hline
 	&FR1 &FR2 & FR3 & FR4 &NFR1 &NFR2 & NFR3 & NFR4\\
 \hline
-Test 1     & X& &  &  & X & & & \\ \hline
-Test 2    & &   X&  &  & X & & & \\ \hline
-Test 3     &   &   &  X&  & X & & & \\ \hline
-Test 4     &  &   &  &  X& X & & & \\ \hline
-Test 5    &  &   &  &  &  & &X & \\ \hline
-Test 6     &  &   &  &  & X & & & \\ \hline
-Test 7     &  &   &  &  & X & & & \\ \hline
+Test 1     & X& X&  &  & X & & & \\ \hline
+Test 2    & &   &  X&X  & X & & & \\ \hline
+Test 3     &   &   &  &  & X & & X& \\ \hline
+Test 4     &X  &X   &  &  & X & & & \\ \hline
+Test 5    &  &  & X & X &  & & & \\ \hline
+
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Tests and Requirments in SRS}
 \label{Table:A_trace}
 \end{table}
-
+\newpage
 \section{Unit Test Description}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
-
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
-
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+In this section, various software modules and the performance of their functions are tested based on the MIS and MG documents. According to these two documents, this software consists of three main modules: File, Graph, and ShowGraph, with the primary computational burden of this software falling on the Graph module. Since the other two modules do not perform primary computations, functional requirements are tested only for the Graph module. Typically, with the use of automated tests written in pytest, the output for degree centrality, closeness centrality, shortest path length, and node degree is tested for accuracy using the networkx library, which determines these outputs.
 
 \subsection{Unit Testing Scope}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+
+As mentioned earlier, tests are mainly focused on the Graph module, which carries the main computational load and ensures the correct functionality of the program.
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+In this section, the tests considered for each module are titled according to functional requirements.
 
-\subsubsection{Module 1}
+\subsubsection{Graph Module}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+As previously mentioned, the main computations of this software are performed by this module, which includes functions such as computing degree centrality, closeness centrality, node degree, and shortest path length between two nodes. Therefore, each of these functions can be separately examined for accuracy and correctness to ensure the validity of the software.
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{degree\_centrality\_bound\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Automatic
 					
-Initial State: 
+Initial State: nodes=[], A list of nodes whose degree centrality is outside the specified range is empty.
 					
-Input: 
+Input: -
 					
-Output: \wss{The expected result for the given inputs}
+Output: Assertion of nodes whose degree centrality is outside the specified range. If the list is empty, the test will pass.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: Nodes that have degree centrality less than zero or greater than one.
+
+How test will be performed: The degree centrality for each node should fall between zero and one. Therefore, in the body of this function, the {get\_degree\_centrality} function is called, and the degree centrality for each node is calculated to determine whether it falls within the specified range or not.
+					
+\item{closeness\_centrality\_bound\\}
+
+Type:  Automatic
+					
+Initial State: nodes=[], A list of nodes whose closeness centrality is outside the specified range is empty.
+					
+Input: -
+					
+Output: Assertion of nodes whose closeness centrality is outside the specified range. If the list is empty, the test will pass.
+
+Test Case Derivation: Nodes that have closeness centrality less than zero or greater than one.
+
+How test will be performed: The closeness centrality for each node should fall between zero and one. Therefore, in the body of this function, the {get\_closeness\_centrality} function is called, and the closeness centrality for each node is calculated to determine whether it falls within the specified range or not.
+
+\item{degree\_centrality\_values\\}
+
+Type: Automatic
+					
+Initial State: nodes=[], A list of nodes whose degree centrality deviates from the expected value.
+					
+Input: -
+					
+Output: Assertion of nodes whose degree centrality deviates from the output of the NetworkX library. If the list is empty, the test will pass.
+
+Test Case Derivation: The degree centrality of these nodes deviates from the output of the NetworkX library.
 
 How test will be performed: 
+The function {get\_degree\_centrality} is called within the body, and its value is computed for each node by comparing it with the value of the {degree\_centrality} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
 					
-\item{test-id2\\}
+\item{closeness\_centrality\_values\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type:  Automatic
 					
-Initial State: 
+Initial State: nodes=[], A list of nodes whose closeness centrality deviates from the expected value.
 					
-Input: 
+Input: -
 					
-Output: \wss{The expected result for the given inputs}
+Output: Assertion of nodes whose closeness centrality deviates from the output of the NetworkX library. If the list is empty, the test will pass.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: The degree centrality of these nodes deviates from the output of the NetworkX library.
+
+How test will be performed: The function {get\_closeness\_centrality} is called within the body, and its value is computed for each node by comparing it with the value of the {closeness\_centrality} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+
+\item{degree\_values\\}
+
+Type: Automatic
+					
+Initial State: nodes=[], A list of nodes whose degree deviates from the expected value.
+					
+Input: -
+					
+Output: Assertion of nodes whose degree deviates from the output of the NetworkX library. If the list is empty, the test will pass.
+
+Test Case Derivation: The degree of these nodes deviates from the output of the NetworkX library.
 
 How test will be performed: 
+The function {get\_degree} is called within the body, and its value is computed for each node by comparing it with the value of the {degree} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+					
+\item{shortest\_path\\}
 
-\item{...\\}
+Type:  Automatic
+					
+Initial State: nodes=[], A list of nodes whose length of shortest path to other nodes deviates from the expected value.
+					
+Input: -
+					
+Output: Assertion of nodes whose length of shortest path deviates from the output of the NetworkX library. If the list is empty, the test will pass.
+
+Test Case Derivation: The length of shortest path of these nodes deviates from the output of the NetworkX library.
+
+How test will be performed: The function {get\_shortest\_path} is called within the body, and its value is computed for each node by comparing it with the value of the {shortest\_path} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+
+
     
 \end{enumerate}
 
-\subsubsection{Module 2}
 
-...
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
-
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
-
-\subsubsection{Module ?}
+In addition to the functional requirements, it is necessary to test the modules based on non-functional requirements as well. Since one of these requirements is the accuracy of the output, this will be examined based on the tests performed for the graph module in the previous section. Additionally, since a simple graphical interface is considered for this software, implemented by the ShowGraph module, usability testing for it is not of great importance. Furthermore, in designing this software, an attempt has been made to utilize a hierarchical modular design approach with minimal side effects, which can serve as confirmation of its maintainability. The only test considered in this section is the accuracy test of the software's performance based on various inputs, which involves all modules.
 		
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{Input Testing\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+Type: Automatic
 					
-Initial State: 
+Initial State: -
 					
-Input/Condition: 
+Input/Condition: Different Input files
 					
-Output/Result: 
+Output/Result:  The module's performance for different inputs varies.
 					
-How test will be performed: 
+How test will be performed: We know that the software is designed for undirected, connected, and unweighted graphs. In this test, various types of inputs, including inputs that violate the project's assumptions, are provided to the system to determine its performance based on these inputs.
 					
-\item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
 
 \end{enumerate}
 
-\subsubsection{Module ?}
-
-...
-
 \subsection{Traceability Between Test Cases and Modules}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+	&File &Graph &ShowGraph\\
+\hline
+Test 1     & & X&  \\ \hline
+Test 2     & & X&  \\ \hline
+Test 3    & & X&  \\ \hline
+Test 4     & & X&  \\ \hline
+Test 5     & & X&  \\ \hline
+Test 6     & & X&  \\ \hline
+Test 7     &X & X& X  \\ \hline
 
-\wss{Provide evidence that all of the modules have been considered.}
+\end{tabular}
+\caption{Traceability Matrix Showing the Connections Between Tests and Modules}
+\label{Table:A_trace}
+\end{table}
+
 				
 \bibliographystyle{plainnat}
 

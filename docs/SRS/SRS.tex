@@ -150,6 +150,7 @@
 January 29, 2024  & 1.0 & Initial drafts\\
 Feburary 4, 2024  & 1.0 & The first review\\
 Feburary 14, 2024  & 1.0 & The second review\\
+April 1 2024  & 1.0 & The last review\\
 
 \bottomrule
 \end{tabularx}
@@ -330,6 +331,8 @@ The graph is undirected.
 
 \item[A\refstepcounter{assumpnum}\theassumpnum \label{A_weighted}:]
 The length of each edge is equal to 1.
+\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_connected}:]
+The  graph is  connected.
 \end{itemize}
 
 \subsubsection{Theoretical Models}\label{sec_theoretical}
@@ -354,7 +357,7 @@ $\text{edge}(i,j) \in \{0, 1\}, where\ there\ is\ an\ edge\ between\ to\ nodes\ 
 {
   Degree centrality looks at
 how many connections each node has, and if a node has a lot of connections, it’s
-considered more important. To calcute DC for each node we need at first calculate degree of node. Degree of node is the number of edged that are direcly connectod to the node. Since the graph is undirected, the degree of each node is equal to the total number of edges connected to that node(\aref{A_directed}). After that we should divide the result to the number of nodes in the graph -1. 
+considered more important. To calcute DC for each node we need at first calculate degree of node. Degree of node is the number of edges that are direcly connectod to the node. Since the graph is undirected, the degree of each node is equal to the total number of edges connected to that node(\aref{A_directed}). After that we should divide the result to the number of nodes in the graph -1. 
 }
 % #6 Notes
 {
@@ -385,11 +388,11 @@ None
 % #4 equation
 { ${CC (i)= \frac{N-1}{\sum{d}(i,j)}}$ 
 ~\newline
- $d(i,j)  $= The shortest path from i to j.\\
+ $d(i,j)  $= The shortest path from i to j. (TM3)\\
 }
 % #5 description
 {
-It checks how close a node is to all the other nodes in the graph. To calculate average distance from node i to all other node, the sum of shortest path from node i to all other nodes should be computed, and the result must divide to total number of nodes -1. Then it must be reversed to find the CC node i.
+It checks how close a node is to all the other nodes in the graph. To calculate average distance from node i to all other node, the sum of shortest path from node i to all other nodes should be computed, and the result must divide to total number of nodes -1. Then it must be reversed to find the CC node i. To calculate this metric, it is necessary for the graph to be fully connected(\aref{A_connected}). Otherwise, the shortest path length for all nodes would be considered infinite.
 
 }
 % #6 Notes
@@ -704,7 +707,7 @@ In this section, non-functional requirements of the software are expressed in th
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
   \textbf{Accuracy} \
-The most important criterion for computational software is the accuracy and precision of the calculations. For this reason, all computations performed by this software must be accurate. To ensure this, considering that we know the range of outputs between zero and one, and there are libraries that calculate these values, we can ascertain the correctness of the software's performance.
+The most important criterion for computational software is the accuracy and precision of the calculations. For this reason, all computations performed by this software must be accurate. To ensure this, considering that we know the range of outputs between zero and one, and there are libraries(NetworkX) that calculate these values, we can ascertain the correctness of the software's performance.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
 Another requirement of this software is its usability, which will be confirmed by the users who work with it.
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
@@ -714,7 +717,7 @@ The software must be maintainable. Modular design in a way that changes in one m
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
   \textbf{Portability}
-The software must be designed in such a way that it can be executed in different conditions and environments. For example, the code for this software is being developed in a Windows environment, and it should be able to run correctly on Linux as well.
+The software must be designed in such a way that it can be executed in different conditions and environments. The code for this software is being developed in a Windows environment, and it should be able to run correctly on Linux as well.
 
 
 \end{itemize}
@@ -761,15 +764,15 @@ the assumptions.
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-	&\aref{A_directed}&\aref{A_weighted}\\
+	&\aref{A_directed}&\aref{A_weighted}&\aref{A_connected} \\
 \hline
-TM1     & X& \\ \hline
-TM2     & X& X \\ \hline
-TM3   &X&X \\ \hline
-\dref{g_graph}     & & \\ \hline
-\ddref{degree}   & X& \\ \hline
-\iref{i_dc}    & X&\\ \hline
-\iref{i_cc}    & X& X\\ \hline
+TM1     & X& & \\ \hline
+TM2     & X& X &X \\ \hline
+TM3   &X&X & X \\ \hline
+\dref{g_graph}     & & & \\ \hline
+\ddref{degree}   & X& & \\ \hline
+\iref{i_dc}    & X& &\\ \hline
+\iref{i_cc}    & X& X & X\\ \hline
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
 \label{Table:A_trace}

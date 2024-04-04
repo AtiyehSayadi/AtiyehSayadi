@@ -73,6 +73,8 @@ This section includes symbols and symbols used for developing this document.
 
 \pagenumbering{arabic}
 
+\section{Introduction}
+
 
 This document is created to review and confirm the project from its early stages of project clarification to design and implementation. It will cover various aspects, including setting up documents and using different techniques and tools for testing the project.
 
@@ -301,135 +303,129 @@ Test 5    &  &  & X & X &  & & & \\ \hline
 \newpage
 \section{Unit Test Description}
 
-In this section, various software modules and the performance of their functions are tested based on the MIS and MG documents. According to these two documents, this software consists of three main modules: File, Graph, and ShowGraph, with the primary computational burden of this software falling on the Graph module. Since the other two modules do not perform primary computations, functional requirements are tested only for the Graph module. Typically, with the use of automated tests written in pytest, the output for degree centrality, closeness centrality, shortest path length, and node degree is tested for accuracy using the networkx library, which determines these outputs.
+In this section, various software modules and the performance of their functions are tested based on the MIS and MG documents. According to these two documents, this software consists of three main modules: File, Graph, and ShowGraph, with the primary computational burden of this software falling on the Graph module. Since the other two modules do not perform primary computations, Therefore, these tests mostly cover the internal functions of the graph module. All automated tests are available in  \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/test_graph.py}{test\_graph.py} .
 
 \subsection{Unit Testing Scope}
 
 
-As mentioned earlier, tests are mainly focused on the Graph module, which carries the main computational load and ensures the correct functionality of the program.
+As mentioned earlier, tests are mainly focused on the Graph module, which carries the main computational load and ensures the correct functionality of the program. 
 
 \subsection{Tests for Functional Requirements}
 
 In this section, the tests considered for each module are titled according to functional requirements.
 
+\subsubsection{Graph File}
+No test has been considered for this module.
 \subsubsection{Graph Module}
 
-As previously mentioned, the main computations of this software are performed by this module, which includes functions such as computing degree centrality, closeness centrality, node degree, and shortest path length between two nodes. Therefore, each of these functions can be separately examined for accuracy and correctness to ensure the validity of the software.
+As previously mentioned, the main computations of this software are performed by this module, which includes functions such as computing degree centrality, closeness centrality, node degree, and etc.. Therefore, each of these functions can be separately examined for accuracy and correctness to ensure the validity of the software.
 
 \begin{enumerate}
 
-\item{degree\_centrality\_bound\\}
+\item{Test1: test\_degree\_centrality}
 
 Type: Automatic
 					
-Initial State: nodes=[], A list of nodes whose degree centrality is outside the specified range is empty.
+Initial State:-
 					
 Input: -
 					
-Output: Assertion of nodes whose degree centrality is outside the specified range. If the list is empty, the test will pass.
-
-Test Case Derivation: Nodes that have degree centrality less than zero or greater than one.
-
-How test will be performed: The degree centrality for each node should fall between zero and one. Therefore, in the body of this function, the {get\_degree\_centrality} function is called, and the degree centrality for each node is calculated to determine whether it falls within the specified range or not.
+Output:Function approval or disapproval
+Test Case Derivation: Exception for nodes with non-zero obtained values.
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
 					
-\item{closeness\_centrality\_bound\\}
-
-Type:  Automatic
-					
-Initial State: nodes=[], A list of nodes whose closeness centrality is outside the specified range is empty.
-					
-Input: -
-					
-Output: Assertion of nodes whose closeness centrality is outside the specified range. If the list is empty, the test will pass.
-
-Test Case Derivation: Nodes that have closeness centrality less than zero or greater than one.
-
-How test will be performed: The closeness centrality for each node should fall between zero and one. Therefore, in the body of this function, the {get\_closeness\_centrality} function is called, and the closeness centrality for each node is calculated to determine whether it falls within the specified range or not.
-
-\item{degree\_centrality\_values\\}
+\item{Test2: test\_closeness\_centrality}
 
 Type: Automatic
 					
-Initial State: nodes=[], A list of nodes whose degree centrality deviates from the expected value.
+Initial State:-
 					
 Input: -
 					
-Output: Assertion of nodes whose degree centrality deviates from the output of the NetworkX library. If the list is empty, the test will pass.
-
-Test Case Derivation: The degree centrality of these nodes deviates from the output of the NetworkX library.
-
-How test will be performed: 
-The function {get\_degree\_centrality} is called within the body, and its value is computed for each node by comparing it with the value of the {degree\_centrality} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+Output:Function approval or disapproval
+Test Case Derivation: Exception for nodes with non-zero obtained values.
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
 					
-\item{closeness\_centrality\_values\\}
 
-Type:  Automatic
-					
-Initial State: nodes=[], A list of nodes whose closeness centrality deviates from the expected value.
-					
-Input: -
-					
-Output: Assertion of nodes whose closeness centrality deviates from the output of the NetworkX library. If the list is empty, the test will pass.
-
-Test Case Derivation: The degree centrality of these nodes deviates from the output of the NetworkX library.
-
-How test will be performed: The function {get\_closeness\_centrality} is called within the body, and its value is computed for each node by comparing it with the value of the {closeness\_centrality} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
-
-\item{degree\_values\\}
+\item{Test3: test\_exist}
 
 Type: Automatic
 					
-Initial State: nodes=[], A list of nodes whose degree deviates from the expected value.
+Initial State:-
 					
 Input: -
 					
-Output: Assertion of nodes whose degree deviates from the output of the NetworkX library. If the list is empty, the test will pass.
+Output:Confirmation or disconfirmation of the expected behavior of the {exist\_edge} function.
+Test Case Derivation: Exception for nodes with true obtained values.
+How test will be performed:This test is designed for the edge existence checking function in the graph. If the edge is outside the graph's bounds, the output value should be false.
+							
+\item{Test4: test\_degree}
 
-Test Case Derivation: The degree of these nodes deviates from the output of the NetworkX library.
-
-How test will be performed: 
-The function {get\_degree} is called within the body, and its value is computed for each node by comparing it with the value of the {degree} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+Type: Automatic
 					
-\item{shortest\_path\\}
-
-Type:  Automatic
-					
-Initial State: nodes=[], A list of nodes whose length of shortest path to other nodes deviates from the expected value.
+Initial State:-
 					
 Input: -
 					
-Output: Assertion of nodes whose length of shortest path deviates from the output of the NetworkX library. If the list is empty, the test will pass.
+Output:Confirmation or disconfirmation of the expected behavior of the {get\_degree }function.
+Test Case Derivation: Exception for nodes with non-zero obtained values.
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
+					
 
-Test Case Derivation: The length of shortest path of these nodes deviates from the output of the NetworkX library.
 
-How test will be performed: The function {get\_shortest\_path} is called within the body, and its value is computed for each node by comparing it with the value of the {shortest\_path} function from the NetworkX library. If there is a discrepancy in the values, the node is added to the list of nodes.
+\item{Test5: test\_shortest\_path}
+
+Type: Automatic
+					
+Initial State:-
+					
+Input: -
+					
+Output:Confirmation or disconfirmation of the expected behavior of the {get\_shortest\_path}function.
+Test Case Derivation: Exception for paths with non-infinite obtained values.
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value infinite for such indices. This test measures the output of the function for out-of-range indices.
+				
+
 
 
     
 \end{enumerate}
 
-
+\subsubsection{Show Graph}
+No test has been considered for this module.
 
 \subsection{Tests for Nonfunctional Requirements}
 
 In addition to the functional requirements, it is necessary to test the modules based on non-functional requirements as well. Since one of these requirements is the accuracy of the output, this will be examined based on the tests performed for the graph module in the previous section. Additionally, since a simple graphical interface is considered for this software, implemented by the ShowGraph module, usability testing for it is not of great importance. Furthermore, in designing this software, an attempt has been made to utilize a hierarchical modular design approach with minimal side effects, which can serve as confirmation of its maintainability. The only test considered in this section is the accuracy test of the software's performance based on various inputs, which involves all modules.
 		
-\begin{enumerate}
 
-\item{Input Testing\\}
+\subsubsection{Graph Module}
+\begin{enumerate}
+\item{Test5: Itest\_disconnect\\}
 
 Type: Automatic
 					
 Initial State: -
 					
-Input/Condition: Different Input files
+Input/Condition: Disconnected graph as the input file. (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/disconnect.txt}{disconnecttxt} )
 					
-Output/Result:  The module's performance for different inputs varies.
+Output/Result:  The module's performance for disconnected graphs.
 					
-How test will be performed: We know that the software is designed for undirected, connected, and unweighted graphs. In this test, various types of inputs, including inputs that violate the project's assumptions, are provided to the system to determine its performance based on these inputs.
-					
+How test will be performed: Closeness centrality is a metric that is only considered for connected graphs because otherwise the sum of the lengths of the shortest paths to other nodes for each node is considered infinite. Therefore, this function should be able to consider a closeness centrality value of zero for all nodes in disconnected graphs.
+ \end{enumerate}
+\subsubsection{ShowGraph}
+\begin{enumerate}
+\item{Test6: Big\_data\\}
 
-
+Type: Automatic
+					
+Initial State: -
+					
+Input/Condition: Big graph as the input file
+					
+Output/Result:  The module's performance for big graphs.
+					
+How test will be performed: The software should be able to perform computations for heavier data and larger graphs and display the output. In this test, Facebook company data(\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/facebook_combined.txt}{facebook\_combined.txt} ), extracted from the \href{https://snap.stanford.edu/data/}{Stanford} website, is inputted into the system as an example of a directed graph.
 \end{enumerate}
 
 \subsection{Traceability Between Test Cases and Modules}
@@ -444,8 +440,7 @@ Test 2     & & X&  \\ \hline
 Test 3    & & X&  \\ \hline
 Test 4     & & X&  \\ \hline
 Test 5     & & X&  \\ \hline
-Test 6     & & X&  \\ \hline
-Test 7     &X & X& X  \\ \hline
+Test 6     &X & &  \\ \hline
 
 \end{tabular}
 \caption{Traceability Matrix Showing the Connections Between Tests and Modules}
@@ -466,32 +461,9 @@ As previously mentioned, this document aims to provide information about testing
 In the development of this document, no symbolic constants have been used.
 \subsection{Usability Survey Questions?}
 
-Since the development of a graphical interface is not part of the development agenda for this project, no description can be considered for this section.
+Since the development of a graphical interface is not part of the development agenda for this project, no description can be considered for this section.Since the user interface designed for this software is very simple, the only question is whether the outputs are clear enough.
 
 \newpage{}
-\section*{Appendix --- Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-\end{enumerate}
 
 \end{document}

@@ -330,9 +330,9 @@ Initial State:-
 					
 Input: -
 					
-Output:Function approval or disapproval
-Test Case Derivation: Exception for nodes with non-zero obtained values.
-How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
+Output: Function approval or disapproval\\
+Test Case Derivation: Exception for nodes with non-zero obtained values.\\
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, the {degree\_centrality}  function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
 					
 \item{Test2: test\_closeness\_centrality}
 
@@ -342,9 +342,9 @@ Initial State:-
 					
 Input: -
 					
-Output:Function approval or disapproval
-Test Case Derivation: Exception for nodes with non-zero obtained values.
-How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
+Output: Function approval or disapproval\\
+Test Case Derivation: Exception for nodes with non-zero obtained values.\\
+How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, the {closeness\_centrality} function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
 					
 
 \item{Test3: test\_exist}
@@ -355,9 +355,9 @@ Initial State:-
 					
 Input: -
 					
-Output:Confirmation or disconfirmation of the expected behavior of the {exist\_edge} function.
-Test Case Derivation: Exception for nodes with true obtained values.
-How test will be performed:This test is designed for the edge existence checking function in the graph. If the edge is outside the graph's bounds, the output value should be false.
+Output: Confirmation or disconfirmation of the expected behavior of the {exist\_edge} function.\\
+Test Case Derivation: Exception for nodes with true obtained values.\\
+How test will be performed: This test is designed for the edge existence checking function in the graph. If the edge is outside the graph's bounds, the output value should be false.
 							
 \item{Test4: test\_degree}
 
@@ -367,8 +367,8 @@ Initial State:-
 					
 Input: -
 					
-Output:Confirmation or disconfirmation of the expected behavior of the {get\_degree }function.
-Test Case Derivation: Exception for nodes with non-zero obtained values.
+Output: Confirmation or disconfirmation of the expected behavior of the {get\_degree } function.\\
+Test Case Derivation: Exception for nodes with non-zero obtained values.\\
 How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value zero for such indices. This test measures the output of the function for out-of-range indices.
 					
 
@@ -381,8 +381,8 @@ Initial State:-
 					
 Input: -
 					
-Output:Confirmation or disconfirmation of the expected behavior of the {get\_shortest\_path}function.
-Test Case Derivation: Exception for paths with non-infinite obtained values.
+Output: Confirmation or disconfirmation of the expected behavior of the {get\_shortest\_path} function.\\
+Test Case Derivation: Exception for paths with non-infinite obtained values.\\
 How test will be performed: Since the graph is stored in the form of an adjacency matrix, node indices should not be outside the matrix bounds. Otherwise, this function will consider the value infinite for such indices. This test measures the output of the function for out-of-range indices.
 				
 
@@ -396,7 +396,7 @@ No test has been considered for this module.
 
 \subsection{Tests for Nonfunctional Requirements}
 
-In addition to the functional requirements, it is necessary to test the modules based on non-functional requirements as well. Since one of these requirements is the accuracy of the output, this will be examined based on the tests performed for the graph module in the previous section. Additionally, since a simple graphical interface is considered for this software, implemented by the ShowGraph module, usability testing for it is not of great importance. Furthermore, in designing this software, an attempt has been made to utilize a hierarchical modular design approach with minimal side effects, which can serve as confirmation of its maintainability. The only test considered in this section is the accuracy test of the software's performance based on various inputs, which involves all modules.
+In addition to the functional requirements, it is necessary to test the modules based on non-functional requirements as well. Since one of these requirements is the accuracy of the output, this will be examined based on the tests performed for the graph module in the previous section. Additionally, since a simple graphical interface is considered for this software, implemented by the ShowGraph module, usability testing for it is not of great importance. Furthermore, in designing this software, an attempt has been made to utilize a hierarchical modular design approach with minimal side effects, which can serve as confirmation of its maintainability. The only test considered in this section is the accuracy test of the software's performance based on various inputs, which involves two modules.
 		
 
 \subsubsection{Graph Module}
@@ -407,7 +407,7 @@ Type: Automatic
 					
 Initial State: -
 					
-Input/Condition: Disconnected graph as the input file. (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/disconnect.txt}{disconnecttxt} )
+Input/Condition: Disconnected graph as the input file. (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/disconnect.txt}{disconnect.txt} )
 					
 Output/Result:  The module's performance for disconnected graphs.
 					
@@ -461,7 +461,7 @@ As previously mentioned, this document aims to provide information about testing
 In the development of this document, no symbolic constants have been used.
 \subsection{Usability Survey Questions?}
 
-Since the development of a graphical interface is not part of the development agenda for this project, no description can be considered for this section.Since the user interface designed for this software is very simple, the only question is whether the outputs are clear enough.
+Since the user interface designed for this software is very simple, the only question is whether the outputs are clear enough.
 
 \newpage{}
 

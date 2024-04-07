@@ -1,5 +1,3 @@
 # Project Name Source Code
 
-The folders and files for this project are as follows:
-
-...
+The main program code along with its data files are stored in this directory. Software files have a .py extension, and data files have a .txt extension. To run the software, simply execute the showgraph.py file. The other files are file.py and graph.py, which are used respectively for reading input files and performing graph computations. The CIG-data text file is the main file of the software, and the rest of the files are used for testing the software. facebook_combined is used to test the software for large graphs, disconnected is used to test the software performance for disconnected graphs, and directed is used to test the software for directed graphs.

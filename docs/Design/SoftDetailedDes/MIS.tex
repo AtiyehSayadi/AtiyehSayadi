@@ -93,7 +93,7 @@ The following document details the Module Interface Specifications for Centralit
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}. \\
+found at \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{here}. \\
 In general, the design steps for this project include the following:\\
 1. Designing a module to obtain the graph structure, which is essentially the adjacency matrix. Then, using the constructed graph, metrics such as node degree and the length of the shortest path from one node to another can be obtained. The outputs of these two functions are used, respectively, for \href{https://towardsdatascience.com/graph-analytics-introduction-and-concepts-of-centrality-8f5543b55de3}{Degree Centrality} and \href{https://www.geeksforgeeks.org/closeness-centrality-centrality-measure/}{Closeness Centrality}.\\
 2. Creating a module that reads the initial graph file and generates an output using the previously designed graph creation module, allowing a graphical user interface (GUI) to utilize it.\\
@@ -172,7 +172,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 File
 \subsection{Uses}
-Graph , Matrix, Hardware-Hiding
+Graph 
 \subsection{Syntax}
 
 \subsubsection{Exported Types}
@@ -184,7 +184,7 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\texttt{read\_file} & string & ${\mathbb{N}}^ {n\times n}$ & - \\
+\texttt{read\_file} & string & GraphT & The file is empty. \\
 \hline
 \end{tabular}
 \end{center}
@@ -208,8 +208,8 @@ N/A
 \noindent \texttt{read\_file(s)}
 \begin{itemize}
 \item transition: - 
-\item output:   $out:= \{0,1\}^{n \times n}$
-\item exception: -  
+\item output: A graph of the Graph module to access the graph properties through it.
+\item exception: When no file is uploaded or the file is empty, the function should issue a warning about the empty state of the variable "file".  
 \end{itemize}
 
 %\wss{A module without environment variables or state variables is unlikely to
@@ -229,25 +229,25 @@ N/A
 
 
 \subsection{Module}
-Graph
+-
 
 \subsection{Uses}
 Matrix
 \subsection{Syntax}
 
 \subsubsection{Exported Types}
-GraphT= ${\mathbb{N}}^ {n\times n}$
+GraphT
 \subsubsection{Exported Access Programs}
 \begin{center}
-\begin{tabular}{p{6cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{6cm} p{2cm} p{2cm} p{6cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 \texttt{GraphT} & ${\mathbb{N}}$  & GraphT& - \\
-\texttt{add\_edge} & $\mathbb{N}$&-  \\
-\texttt{exist\_edge} & $\mathbb{N}$,$\mathbb{N}$ & $\mathbb{B}$  & - \\
+\texttt{add\_edge} & $\mathbb{N}$& -&Inputs are out of range. \\
+\texttt{exist\_edge} & $\mathbb{N}$, $\mathbb{N}$ & $\mathbb{B}$  & - \\
 \texttt{get\_degree} & $\mathbb{N}$ & $\mathbb{N}$ & - \\
-\texttt{get\_shortest\_path} & $\mathbb{N}$,$\mathbb{N}$ & $\mathbb{N}$ & - \\
+\texttt{get\_shortest\_path} & $\mathbb{N}$, $\mathbb{N}$ & $\mathbb{N}$ & - \\
 \texttt{degree\_centrality} & $\mathbb{N}$ & $\mathbb{R}$ & - \\
 \texttt{closeness\_centrality} & $\mathbb{N}$ & $\mathbb{R}$ & - \\
 
@@ -259,7 +259,7 @@ GraphT= ${\mathbb{N}}^ {n\times n}$
 
 \subsubsection{State Variables}
 
-garph: ${\mathbb{N}}^ {n\times n}$ 
+graph: ${\mathbb{N}}^ {n\times n}$ 
 
 
 \subsubsection{Environment Variables}
@@ -278,7 +278,7 @@ N/A
 \noindent \texttt{GraphT(g)}
 \begin{itemize}
 \item transition: 
-\item output: $out:= \{0\}^{n \times n}$
+\item output: A n*n zero matrix.
 \item exception: -
 \end{itemize}
 
@@ -286,13 +286,13 @@ N/A
 \begin{itemize}
 \item transition: $graph[s,e]:=1,\ graph[e,s]:=1$
 \item output: -
-\item exception:-  
+\item exception: If the indices are out of bounds, accessing the matrix is not possible, so in this case, an error alert is issued by the function.  
 \end{itemize}
 
 \noindent \texttt{exist\_edge(s, e)}
 \begin{itemize}
 \item transition: -
-\item output: $out:= if\ graph[s,e] ==1\Rightarrow true,\ else\Rightarrow\ false$
+\item output: $out:= ( graph[s,e] ==1)$
 \item exception:-  
 \end{itemize}
 
@@ -306,7 +306,7 @@ N/A
 \noindent \texttt{get\_shortest\_path(s,n)}
 \begin{itemize}
 \item transition: -
-\item output: $out:=Min(|s,a1,a2,..n|) \\where\ a1, a2, .. are\ the\ nodes\ between\ a\ and\ n\ on\ the\ path\ from\ s\ to\ n.$
+\item output: $out:=Min(|s,a1,a2,..n|) \\The \ shortest \ path\  between\  nodes\  s\  and \ n .$
 \item exception: -   
 \end{itemize}
 
@@ -335,7 +335,7 @@ N/A
 Show Graph
 
 \subsection{Uses}
-File, Output Provider, Hardware-Hiding
+File
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
@@ -394,20 +394,6 @@ N/A
 \bibliography {../../../refs/References}
 
 
-
-\section{Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Problem Analysis and Design.  Please answer the following questions:
-
-\begin{enumerate}
-  \item What are the limitations of your solution?  Put another way, given
-  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
-  \item Give a brief overview of other design solutions you considered.  What
-  are the benefits and tradeoffs of those other designs compared with the chosen
-  design?  From all the potential options, why did you select the documented design?
-  (LO\_Explores)
-\end{enumerate}
 
 
 \end{document}

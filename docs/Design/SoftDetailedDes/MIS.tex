@@ -95,10 +95,11 @@ Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
 found at \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{here}. \\
 In general, the design steps for this project include the following:\\
-1. Designing a module to obtain the graph structure, which is essentially the adjacency matrix. Then, using the constructed graph, metrics such as node degree and the length of the shortest path from one node to another can be obtained. The outputs of these two functions are used, respectively, for \href{https://towardsdatascience.com/graph-analytics-introduction-and-concepts-of-centrality-8f5543b55de3}{Degree Centrality} and \href{https://www.geeksforgeeks.org/closeness-centrality-centrality-measure/}{Closeness Centrality}.\\
-2. Creating a module that reads the initial graph file and generates an output using the previously designed graph creation module, allowing a graphical user interface (GUI) to utilize it.\\
-3. Additionally, the graphical user interface output needs to represent the obtained outputs in the form of an image, displaying a graph.
-
+\begin{enumerate}
+\item Designing a module to obtain the graph structure, which is essentially the adjacency matrix. Then, using the constructed graph, metrics such as node degree and the length of the shortest path from one node to another can be obtained. The outputs of these two functions are used, respectively, for \href{https://towardsdatascience.com/graph-analytics-introduction-and-concepts-of-centrality-8f5543b55de3}{Degree Centrality} and \href{https://www.geeksforgeeks.org/closeness-centrality-centrality-measure/}{Closeness Centrality}.\\
+\item Creating a module that reads the initial graph file and generates an output using the previously designed graph creation module, allowing a graphical user interface (GUI) to utilize it.\\
+\item Additionally, the graphical user interface output needs to represent the obtained outputs in the form of an image, displaying a graph.
+\end{enumerate}
 In the design of this software, two modules, namely GUI Provider and Matrix, have been considered. Since these two modules utilize the libraries \href{https://docs.python.org/3/library/tk.html}{Tkinter} and \href{https://numpy.org/}{NumPy} respectively, serving as interfaces for these libraries, their interfaces will not be designed in this document.
 
 \section{Notation}

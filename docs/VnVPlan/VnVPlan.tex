@@ -89,11 +89,11 @@ We want to design software that calculates closeness centrality and degree centr
 The purpose of developing this document is to ensure the accuracy and reliability of the project from various aspects. Accordingly, it is necessary for the project to be tested from different perspectives and stages based on the defined requirements. Since the functional requirements of the final system are defined based on the accuracy and precision of the outputs, this issue encompasses a significant portion of the tests. Additionally, since this system will provide a simple user interface, it does not seem necessary to perform usability testing for non-functional requirements. Furthermore, due to time constraints, it is not feasible to install the software on various systems to fully assess its portability.
 \subsection{Relevant Documentation}
 
-At this stage of document setup, other documents such as the Software Requirements Specification (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/SRS/SRS.pdf}{SRS}),  the \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{MIS} and \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftArchitecture/MG.pdf}{MG} have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in these documents.
+At this stage of document setup, other documents such as the Software Requirements Specification (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/SRS/SRS.pdf}{SRS}), Module Interface Specifications( the \href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}) and Module Guide(\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/docs/Design/SoftArchitecture/MG.pdf}{MG}) have been utilized. This is because at this stage, it is necessary to specify the development objectives, requirements, assumptions, and constraints of the software, and accordingly, testing is conducted. Additionally, precise computational algorithms need to be identified to assess their accuracy and precision. All of these aspects are summarized in these documents.
 
 
 \section{Plan}
-The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. In the first stage, it is necessary to identify which individuals are involved in testing this project and what each person's role is. Then, the Software Requirements Specification (SRS) document is reviewed as the first important document for testing this software. Following that, the testing procedure for design documents, including even this test document, is examined, and then the final software testing is introduced. Since testing is carried out both automatically and manually, automated testing tools will also be introduced.
+The purpose of this section is to identify and examine various aspects and relevant items related to this project for testing. In the first stage, it is necessary to identify which individuals are involved in testing this project and what each person's role is. Then, the SRS document is reviewed as the first important document for testing this software. Following that, the testing procedure for design documents, including even this test document, is examined, and then the final software testing is introduced. Since testing is carried out both automatically and manually, automated testing tools will also be introduced.
 
 \subsection{Verification and Validation Team}
 
@@ -150,8 +150,7 @@ In this stage, besides the review conducted by the Dr.Spencer Smith, it is neces
 As mentioned, this software will primarily be tested for accuracy and performance. Additionally, the focus will be mainly on unit testing and system testing. Therefore, Pytest will be used for testing this software. Furthermore, for addressing issues related to coding errors and standardizing them, pylint will be utilized.
 
 \subsection{Software Validation Plan}
-
-To validate any software, it is necessary to first verify it from various aspects. After the software has been verified, the project owner needs to validate it. This project will be validated by Dr. Spencer Smith.
+The first step in validating any software is to verify it from various aspects. After the software has been verified, the project owner needs to validate it. This project will be validated by Dr. Spencer Smith.
 
 \section{System Test Description}
 	
@@ -407,7 +406,7 @@ Type: Automatic
 					
 Initial State: -
 					
-Input/Condition: Disconnected graph as the input file. (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/disconnect.txt}{disconnect.txt} )
+Input/Condition: Disconnected graph as the input file. (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/disconnect.txt}{disconnect.txt})
 					
 Output/Result:  The module's performance for disconnected graphs.
 					
@@ -425,7 +424,7 @@ Input/Condition: Big graph as the input file
 					
 Output/Result:  The module's performance for big graphs.
 					
-How test will be performed: The software should be able to perform computations for heavier data and larger graphs and display the output. In this test, Facebook company data(\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/facebook_combined.txt}{facebook\_combined.txt} ), extracted from the \href{https://snap.stanford.edu/data/}{Stanford} website, is inputted into the system as an example of a directed graph.
+How test will be performed: The software should be able to perform computations for heavier data and larger graphs and display the output. In this test, Facebook company data(\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/tree/main/test/facebook_combined.txt}{facebook\_combined.txt}), extracted from the \href{https://snap.stanford.edu/data/}{Stanford} website, is inputted into the system as an example of a directed graph.
 \end{enumerate}
 
 \subsection{Traceability Between Test Cases and Modules}
@@ -454,7 +453,7 @@ Test 6     &X & &  \\ \hline
 
 \section{Appendix}
 
-As previously mentioned, this document aims to provide information about testing a software project from start to finish, covering different methods and aspects. Therefore, this document will assist in achieving a more precise and targeted testing and validation process.
+This document aims to provide information about testing a software project from start to finish, covering different methods and aspects. Therefore, this document will assist in achieving a more precise and targeted testing and validation process.
 
 \subsection{Symbolic Parameters}
 

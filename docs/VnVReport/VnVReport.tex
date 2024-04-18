@@ -1,5 +1,5 @@
 \documentclass[12pt, titlepage]{article}
-
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -17,8 +17,8 @@
 
 \begin{document}
 
-\title{Verification and Validation Report: \progname} 
-\author{\authname}
+\title{Verification and Validation Report for Centrality In Graphs} 
+\author{Atiyeh Sayadi}
 \date{\today}
 	
 \maketitle
@@ -30,8 +30,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+April 10, 2024 & Notes\\
 \bottomrule
 \end{tabularx}
 
@@ -48,7 +47,7 @@ Date 2 & 1.1 & Notes\\
   \bottomrule
 \end{tabular}\\
 
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+
 
 \newpage
 
@@ -62,57 +61,118 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+
+This document provides a summary of the tests conducted for the centrality project in graphs.
 
 \section{Functional Requirements Evaluation}
+This section tests the functional requirements of the system, the description of which is as follows:
+\begin{enumerate}
+\item{Test1: Bound Testing for degree centrality\\}	
+Based on requirements 1 and 2 of this project, it is necessary for the degree centrality to be accurately calculated for all nodes. We know that this metric for each node is between zero and one. Therefore, a function needs to be written to evaluate this value for each node based on the allowable range and report any discrepancies found.
+\item{Test2: Bound Testing for closeness centrality\\}
+Based on requirements 3 and 4 of this project, it is necessary for the closeness centrality to be accurately calculated for all nodes. We know that this metric for each node is between zero and one. Therefore, a function needs to be written to evaluate this value for each node based on the allowable range and report any discrepancies found.
 
+\end{enumerate}
+
+The implementation of both tests is available in the  (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/test/test_cig.py}{test\_cig}).
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Usability}
-		
-\subsection{Performance}
+No user feedback has been obtained for this test.		
+\subsection{maintainability}
+\begin{enumerate}
 
-\subsection{etc.}
-	
+\item{Test3: Code Testing\\}
+By utilizing the Python's Pylint tool, the codes can be standardized, ensuring high maintainability.
+\end{enumerate}
+\subsection{Accuracy}
+\begin{enumerate}
+\item{Test4: Correctness Testing for DC\\}
+
+ Using the NetworkX library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program(Based on requirements 1 and 2).
+
+How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
+
+\item{Test5: Correctness Testing for CC\\}
+
+Using the NetworkX library functions in Python, the centrality of each node is calculated for the given graph, and it is compared with the output of the program(Based on requirements 3 and 4).
+
+How test will be performed: Nodes for which the calculated centrality differs from the library function output are displayed.
+
+\end{enumerate}
+The implementation of both tests is available in the  (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/test/test\_cig.py}{test\_cig}).
 \section{Comparison to Existing Implementation}	
-
-This section will not be appropriate for every project.
+Previously, the plan was to implement the main graph of the project in the form of an adjacency matrix, representing the relationships between nodes, or the adjacency matrix, and related concepts. However, following feedback from Dr. Spencer Smith, it was decided to design this project in a modular manner based on the abstract data type, which is the graph itself. This modular design approach significantly enhances usability and maintainability.
 
 \section{Unit Testing}
-
+The implementation of these tests is available in the  (\href{https://github.com/AtiyehSayadi/Centrality-In-Graphs/blob/main/test/test\_graph.py}{test\_graph}).
+\begin{figure}[h!]
+    \centering
+   \includegraphics[width=1.0\textwidth, keepaspectratio]{repo.png}
+    \caption{Test logs}
+\end{figure}
 \section{Changes Due to Testing}
+After numerous reviews, this code has undergone several changes, including the definition of the graph data type and the class related to graph implementation. Additionally, the method for displaying output to highlight important nodes has been modified per Dr. Spencer Smith's directive.
 
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
 
 \section{Automated Testing}
-		
-\section{Trace to Requirements}
-		
-\section{Trace to Modules}		
 
+All tests have been automated using Python's testing framework (Pytest) and linting tool (Pylint).		
+\section{Trace to Requirements}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+\hline
+	&FR1 &FR2 & FR3 & FR4 &NFR1 &NFR2 & NFR3 & NFR4\\
+\hline
+ Bound Testing for degree centrality     & X& X&  &  & X & & & \\ \hline
+Bound Testing for closeness centrality    & &   &  X&X  & X & & & \\ \hline
+Code Testing    &   &   &  &  & X & & X& \\ \hline
+Correctness Testing for DC\    &X  &X   &  &  & X & & & \\ \hline
+Correctness Testing for CC    &  &  & X & X &  & & & \\ \hline
+test\_degree\_centrality    & X & X &  &  &  & & & \\ \hline
+ test\_closeness\_centrality    &  &  & X & X &  & & & \\ \hline
+test\_exist    & X &X  & X & X &  & & & \\ \hline
+test\_degree    & X &X  &  &  &  & & & \\ \hline
+test\_shortest\_path    &  &  & X & X &  & & & \\ \hline
+\end{tabular}
+\caption{Trace to Requirements}
+\label{Table:A_trace}
+\end{table}		
+\section{Trace to Modules}		
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+	&File &Graph & ShowGraph \\
+\hline
+ Bound Testing for degree centrality     & & X& \\ \hline
+Bound Testing for closeness centrality    & &  X&  \\ \hline
+Code Testing    &  X & X  & X \\ \hline
+Correctness Testing for DC\    & &X   & X\\ \hline
+Correctness Testing for CC    &  &  X& X \\ \hline
+test\_degree\_centrality    &  & X &   \\ \hline
+ test\_closeness\_centrality    &  &  X& \\ \hline
+test\_exist    &  &X  &  \\ \hline
+test\_degree    & &X  &  \\ \hline
+test\_shortest\_path    &X  &  & \\ \hline
+\end{tabular}
+\label{Table:A_trace}
+\caption{Trace to Modules}
+\end{table}	
+\newpage
 \section{Code Coverage Metrics}
+\begin{figure}[h!]
+    \centering
+   \includegraphics[width=1.0\textwidth, keepaspectratio]{cov.png}
+    \caption{Code Coverage Metrics}
+\end{figure}
 
 \bibliographystyle{plainnat}
-\bibliography{../../refs/References}
+
 
 \newpage{}
-\section*{Appendix --- Reflection}
 
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Reflection.  Please answer the following question:
 
-\begin{enumerate}
-  \item In what ways was the Verification and Validation (VnV) Plan different
-  from the activities that were actually conducted for VnV?  If there were
-  differences, what changes required the modification in the plan?  Why did
-  these changes occur?  Would you be able to anticipate these changes in future
-  projects?  If there weren't any differences, how was your team able to clearly
-  predict a feasible amount of effort and the right tasks needed to build the
-  evidence that demonstrates the required quality?  (It is expected that most
-  teams will have had to deviate from their original VnV Plan.)
-\end{enumerate}
 
 \end{document}

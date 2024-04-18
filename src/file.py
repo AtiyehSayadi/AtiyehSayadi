@@ -1,6 +1,6 @@
 """File Module"""
 import numpy as np
-from graph import Graph
+from src.graph import Graph
 class File:
     """This module is for reading files."""    
     def read_file(self, filename):

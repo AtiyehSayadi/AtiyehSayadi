@@ -2,7 +2,7 @@
 import tkinter as tk
 import networkx as nx
 import matplotlib.pyplot as plt
-from file import File
+from src.file import File
 class ShowGraph:
     """A class for graph visualization and computations."""
     def __init__(self):

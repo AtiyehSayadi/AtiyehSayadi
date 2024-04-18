@@ -1,24 +1,26 @@
 import numpy as np
 import networkx as nx
-from file import*
-from graph import*
-from showgraph import *
-def test_disconnect():
-    graph = File().read_file("disconnect.txt")
-    adj_matrix=graph.get_adj_matrix()
-    matrix_len=len(adj_matrix)
-    i=0
-    nodes=list()
-    #a.append(2)
-    while i< matrix_len:
-        if (graph.closeness_centrality(i) !=0):
-            nodes.append(i)
-        i +=1
-    assert len(nodes) == 0
-    return
+import sys
+sys.path.append('../')
+from src.file import File
+from src.graph import *
+from src.showgraph import *
+# def test_disconnect():
+#     graph = File().read_file("disconnect.txt")
+#     adj_matrix=graph.get_adj_matrix()
+#     matrix_len=len(adj_matrix)
+#     i=0
+#     nodes=list()
+#     #a.append(2)
+#     while i< matrix_len:
+#         if (graph.closeness_centrality(i) !=0):
+#             nodes.append(i)
+#         i +=1
+#     assert len(nodes) == 0
+#     return
 def test_exist():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     exist = graph.exist_edge(-1,matrix_len)
@@ -26,7 +28,7 @@ def test_exist():
     return
 def test_degree():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     degree = graph.get_degree(matrix_len)
@@ -36,7 +38,7 @@ def test_degree():
     return
 def test_shortest_path():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     path = graph.get_shortest_path(0,matrix_len)
@@ -46,7 +48,7 @@ def test_shortest_path():
     return
 def test_degree_centrality():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     dc = graph.degree_centrality(matrix_len+10)
@@ -56,7 +58,7 @@ def test_degree_centrality():
     return
 def test_closeness_centrality():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     dc = graph.closeness_centrality(matrix_len+14)

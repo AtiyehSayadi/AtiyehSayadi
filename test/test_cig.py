@@ -1,10 +1,12 @@
 """Software testing module."""
 import numpy as np
 import networkx as nx
-from file import File
+import sys
+sys.path.append('../')
+from src.file import File
 def test_degree_centrality_bound():
     """Testing the correctness of the degree centrality range."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len=len(adj_matrix)
     i=0
@@ -18,7 +20,7 @@ def test_degree_centrality_bound():
     return
 def test_closeness_centrality_bound():
     """Testing the correctness of the closeness centrality range."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len=len(adj_matrix)
     i=0
@@ -32,7 +34,7 @@ def test_closeness_centrality_bound():
     return
 def test_closeness_centrality_values():
     """Testing the correctness of closeness centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     main_graph = nx.Graph(adj_matrix)
@@ -48,7 +50,7 @@ def test_closeness_centrality_values():
     return
 def test_degree_centrality_values():
     """Testing the correctness of degree centrality values."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     main_graph = nx.Graph(adj_matrix)
@@ -64,7 +66,7 @@ def test_degree_centrality_values():
     return
 def test_degree_values():
     """Testing the accuracy of node degree calculation."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     matrix_len = len(adj_matrix)
     nx_graph = nx.Graph(adj_matrix)
@@ -77,7 +79,7 @@ def test_degree_values():
     assert len(nodes)==0
 def test_shortest_path():
     """Testing the accuracy of calculating the shortest path length between two nodes."""
-    graph = File().read_file("CIG-data.txt")
+    graph = File().read_file(r"C:\Users\atiye\Centrality-In-Graphs\src\CIG-data.txt")
     adj_matrix=graph.get_adj_matrix()
     nx_graph = nx.Graph(adj_matrix)
     matrix_len = len(adj_matrix)
